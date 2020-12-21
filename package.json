@@ -1,0 +1,26 @@
+{
+  "name": "drizzle-vue-box",
+  "version": "0.0.1",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "apply-registry": "apply-registry -i build/contracts -o vapp/contracts -n networks",
+    "compile": "truffle compile && npm run apply-registry",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "@harmony-js/core": "^0.1.56",
+    "@harmony-js/utils": "^0.1.56",
+    "@openzeppelin/contracts": "^3.2.0",
+    "dotenv": "^8.2.0",
+    "tslib": "^2.0.3"
+  },
+  "devDependencies": {
+    "truffle-deploy-registry": "^0.5.1"
+  }
+}

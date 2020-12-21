@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Initial commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/layouts/default.vue" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Solidity Contract" />
+        <option value="Vue Single File Component" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1ir4JbbMMtNfK1RqHdGgdqlKCf2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.15.1" />
+    <property name="javascript.nodejs.core.library.typings.version" value="14.14.10" />
+    <property name="js.linters.configure.manually.selectedeslint" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/dapp-examples-master" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="C:\Users\YannPelletier\WebstormProjects\wafflehouse\vapp\node_modules\eslint" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\YannPelletier\WebstormProjects\wafflehouse\vapp" />
+      <recent name="C:\Users\YannPelletier\WebstormProjects\wafflehouse" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/vapp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\YannPelletier\WebstormProjects\wafflehouse\build" />
+      <recent name="$PROJECT_DIR$/vapp/enums" />
+      <recent name="$PROJECT_DIR$/vapp/constants" />
+      <recent name="$PROJECT_DIR$/vapp/pages/waffles" />
+      <recent name="$PROJECT_DIR$/vapp/components/dialogs" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="NodeJSConfigurationType" path-to-node="/app/node/bin/node">
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/vapp/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="" />
+      <created>1602652307033</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602652307033</updated>
+      <workItem from="1602652308693" duration="11289000" />
+      <workItem from="1602687202627" duration="51000" />
+      <workItem from="1602723782429" duration="980000" />
+      <workItem from="1603565547075" duration="12516000" />
+      <workItem from="1603700416636" duration="5970000" />
+      <workItem from="1603838543243" duration="6567000" />
+      <workItem from="1604454744497" duration="22481000" />
+      <workItem from="1604965484890" duration="4000" />
+      <workItem from="1605076273963" duration="18767000" />
+      <workItem from="1605157674600" duration="15411000" />
+      <workItem from="1605300435474" duration="38515000" />
+      <workItem from="1605359610478" duration="64135000" />
+      <workItem from="1605551106030" duration="488000" />
+      <workItem from="1605678097640" duration="18186000" />
+      <workItem from="1605978613456" duration="4129000" />
+      <workItem from="1606053158551" duration="5000" />
+      <workItem from="1606053172653" duration="7101000" />
+      <workItem from="1606212006338" duration="26290000" />
+      <workItem from="1606309077433" duration="43448000" />
+      <workItem from="1606482833814" duration="3000" />
+      <workItem from="1606482848626" duration="19611000" />
+      <workItem from="1606521215104" duration="1612000" />
+      <workItem from="1606523463248" duration="577000" />
+      <workItem from="1606524107366" duration="412000" />
+      <workItem from="1606524530205" duration="31265000" />
+      <workItem from="1606694024584" duration="17028000" />
+      <workItem from="1606860532430" duration="2374000" />
+      <workItem from="1606867521626" duration="6975000" />
+      <workItem from="1607103986779" duration="27045000" />
+      <workItem from="1607146445688" duration="4963000" />
+      <workItem from="1607286302528" duration="227000" />
+      <workItem from="1607286544693" duration="1524000" />
+      <workItem from="1607380696561" duration="609000" />
+      <workItem from="1607413274910" duration="350000" />
+      <workItem from="1607413635514" duration="1644000" />
+      <workItem from="1607475228190" duration="285000" />
+      <workItem from="1607475531402" duration="384000" />
+      <workItem from="1607492577056" duration="6717000" />
+      <workItem from="1607503427526" duration="20098000" />
+      <workItem from="1607659953630" duration="79990000" />
+      <workItem from="1608341996278" duration="55841000" />
+      <workItem from="1608536716180" duration="13333000" />
+      <workItem from="1608550400858" duration="233000" />
+      <workItem from="1608557817384" duration="2082000" />
+    </task>
+    <task id="LOCAL-00001" summary="Implemented waffle display">
+      <created>1602652763796</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602652763796</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Contracts first push">
+      <created>1602656135508</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1602656135508</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Waffle display adjustments + contracts structure change">
+      <created>1603668168686</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603668168686</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Contract basic waffle and vote system">
+      <created>1605076368379</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605076368379</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implemented design of every page, contract waffle creation, customization and voting system">
+      <created>1605319024565</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605319024565</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Slight mobile adaptations, drizzle plug-in, first contract calls">
+      <created>1605359194107</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605359194107</updated>
+    </task>
+    <task id="LOCAL-00007" summary="First GitHub commit (last stable private push)">
+      <created>1605359738348</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605359738348</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Favorite system and generic transaction tracking system">
+      <created>1605408233876</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1605408233876</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fixed drizzle flow, replace connect wallet page with a dialog, implemented basic waffle loading system, replace some requires with modifiers">
+      <created>1605551405736</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1605551405736</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Implemented add ingredient flow, implemented reactivity in my-waffles, reworked view waffle page">
+      <created>1606521130787</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1606521130788</updated>
+    </task>
+    <task id="LOCAL-00011" summary="ESlint cleanup">
+      <created>1606527337509</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1606527337509</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Store typescript rework and implementation of dialog system">
+      <created>1606597396113</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1606597396113</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Implemented full waffle customization flow, implemented vote and recent waffles">
+      <created>1608464096885</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1608464096885</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Initial commit">
+      <created>1608537030979</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1608537030979</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Initial commit">
+      <created>1608549540442</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1608549540442</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Initial commit">
+      <created>1608549791842</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1608549791842</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implemented waffle display" />
+    <MESSAGE value="Contracts first push" />
+    <MESSAGE value="Waffle display adjustments + contracts structure change" />
+    <MESSAGE value="Contract basic waffle and vote system" />
+    <MESSAGE value="Implemented design of every page, contract waffle creation, customization and voting system" />
+    <MESSAGE value="Slight mobile adaptations, drizzle plug-in, first contract calls" />
+    <MESSAGE value="First GitHub commit (last stable private push)" />
+    <MESSAGE value="Favorite system and generic transaction tracking system" />
+    <MESSAGE value="Fixed drizzle flow, replace connect wallet page with a dialog, implemented basic waffle loading system, replace some modifiers with requires" />
+    <MESSAGE value="Fixed drizzle flow, replace connect wallet page with a dialog, implemented basic waffle loading system, replace some requires with modifiers" />
+    <MESSAGE value="Implemented add ingredient flow, implemented reactivity in my-waffles, reworked view waffle page" />
+    <MESSAGE value="ESlint cleanup" />
+    <MESSAGE value="Store rework and implementation of dialog system" />
+    <MESSAGE value="Store typescript rework and implementation of dialog system" />
+    <MESSAGE value="Transitioned project environment to support Harmony" />
+    <MESSAGE value="Implemented full waffle customization flow, implemented vote and recent waffles" />
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
