@@ -1,21 +1,23 @@
 <template>
-  <v-app dark class="app-container">
-    <template v-if="passValid">
-      <requirements-dialog :value="!showApp" />
-      <template v-if="showApp">
-        <waffle-viewer-dialog />
-        <processing-dialog />
-        <confirm-dialog />
-        <error-dialog />
-        <toolbar />
-        <v-main class="page-wrapper">
-          <nuxt />
-        </v-main>
+  <v-app>
+    <div class="fill-both app-container">
+      <template v-if="passValid">
+        <requirements-dialog :value="!showApp" />
+        <template v-if="showApp">
+          <waffle-viewer-dialog />
+          <processing-dialog />
+          <confirm-dialog />
+          <error-dialog />
+          <toolbar />
+          <v-main>
+            <nuxt />
+          </v-main>
+        </template>
       </template>
-    </template>
-    <template v-else>
-      <teaser />
-    </template>
+      <template v-else>
+        <teaser />
+      </template>
+    </div>
   </v-app>
 </template>
 
@@ -59,7 +61,7 @@ export default {
     }
   },
   mounted () {
-    this.passValid = this.$route.query.pass === 'lmfao1234'
+    this.passValid = true// this.$route.query.pass === 'lmfao1234'
   }
 }
 </script>
@@ -67,15 +69,10 @@ export default {
 <style scoped>
   .app-container {
     background: url(../static/background.png) repeat;
+    animation: ScrollBackground 10s linear infinite;
     border-radius: 5px;
     overflow: hidden;
-    animation: ScrollBackground 10s linear infinite;
     font-family: Roboto, serif;
-  }
-
-  .page-wrapper {
-    width: 100%;
-    transition: margin-top .25s;
   }
 
   @keyframes ScrollBackground {

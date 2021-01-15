@@ -8,11 +8,12 @@
         <v-col cols="12" md="4">
           <v-select
             v-model="filter"
-            color="white"
             outlined
             :items="filterData"
             height="50"
-            class="select-container"
+            background-color="transparent"
+            item-color="#FFFFFF"
+            color="white"
             solo
             single-line
             @change="refreshWaffles"
@@ -131,7 +132,7 @@ export default {
       const waffleCount = Math.min(this.publishedWafflesCount, SHOWN_WAFFLES_COUNT)
       const publishedWaffleIndices = []
       while (publishedWaffleIndices.length < waffleCount) {
-        const randomPublishedIndex = Math.floor(Math.random() * this.publishedWafflesCount) + 1
+        const randomPublishedIndex = Math.floor(Math.random() * this.publishedWafflesCount)
         if (!publishedWaffleIndices.includes(randomPublishedIndex)) {
           publishedWaffleIndices.push(randomPublishedIndex)
         }

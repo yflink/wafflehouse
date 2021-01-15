@@ -5,14 +5,17 @@
         <v-row class="vh-center button-container-background">
           <div>
             <v-row>
-              <v-col cols="4" class="pa-0 ma-0">
+              <v-col cols="3" class="pa-0 ma-0">
                 <toolbar-button to="/" label="Home" />
               </v-col>
-              <v-col cols="4" class="pa-0 ma-0">
+              <v-col cols="3" class="pa-0 ma-0">
                 <toolbar-button show-waffle to="/my-waffles" label="My Waffles" />
               </v-col>
-              <v-col cols="4" class="pa-0 ma-0">
+              <v-col cols="3" class="pa-0 ma-0">
                 <toolbar-button to="/vote" label="Vote" />
+              </v-col>
+              <v-col cols="3" class="pa-0 ma-0">
+                <toolbar-button to="/rules" label="Rules" />
               </v-col>
             </v-row>
           </div>

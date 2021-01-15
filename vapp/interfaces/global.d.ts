@@ -9,7 +9,7 @@ declare global {
   }
 
   interface Window {
-    onewallet: any;
-    harmony: any;
+    onewallet?: any;
+    harmony?: any;
   }
 }

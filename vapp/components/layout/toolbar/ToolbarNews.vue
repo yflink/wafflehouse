@@ -6,7 +6,7 @@
           BREAKING NEWS
         </v-col>
         <v-col cols="12" md="10" class="news-background vh-center">
-          <div ref="label" class="news-label animated">
+          <div ref="label" class="news-label animated" :style="labelStyle">
             <span>
               {{ label }}
             </span>
@@ -18,15 +18,21 @@
 </template>
 
 <script>
-import newsTickers from '@/lists/news-tickers'
-
-const NEWS_NUMBER = 7
+import newsTickers from '~/lists/news-tickers'
 
 export default {
   name: 'ToolbarNews',
   data () {
     return {
-      label: ''
+      label: '',
+      animationTime: 0
+    }
+  },
+  computed: {
+    labelStyle () {
+      return {
+        'animation-duration': `${this.animationTime}s`
+      }
     }
   },
   mounted () {
@@ -46,9 +52,8 @@ export default {
       }
     },
     generateNews () {
-      for (let i = 0; i < NEWS_NUMBER; i++) {
-        this.label = this.getRandomTicker()
-      }
+      this.label = this.getRandomTicker()
+      this.animationTime = this.label.length / 6
     }
   }
 }
@@ -78,16 +83,18 @@ export default {
   }
 
   .animated {
-    animation: Scrolling 20s linear infinite;
+    animation-name: Scrolling;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
   }
 
   @keyframes Scrolling {
     0% {
-      transform: translateX(150%);
+      transform: translateX(100%);
     }
 
     100% {
-      transform: translateX(-150%);
+      transform: translateX(-100%);
     }
   }
 </style>

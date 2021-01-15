@@ -39,3 +39,9 @@ export enum CustomizationStep {
   EXTRA,
   DONE
 }
+
+export enum Ticker {
+  ONE,
+  WONE,
+  YFL
+}

@@ -27,22 +27,15 @@
       aspect-ratio="2.5"
     >
       <div class="layer-info fill-height" :class="{'expanded': expanded}">
-        <div>
-          <h6>
-            Plate
-          </h6>
-          <h5>
-            {{ plate.name }}
-          </h5>
-        </div>
-        <div class="mt-2">
-          <h6>
-            Extra
-          </h6>
-          <h5>
-            {{ extra.name }}
-          </h5>
-        </div>
+        <h6>
+          Global
+        </h6>
+        <h5>
+          Plate: {{ plate.name }}
+        </h5>
+        <h5>
+          Extra: {{ extra.name }}
+        </h5>
       </div>
     </v-img>
     <v-img
@@ -194,18 +187,6 @@ export default {
     user-select: none;
   }
 
-  .expandable {
-    cursor: pointer;
-  }
-
-  .view-text {
-    font-size: 25px;
-    transition: opacity .2s;
-    transform: translateX(-5%);
-    opacity: 0;
-    z-index: 100;
-  }
-
   .waffle {
     position:absolute;
     bottom:0;
@@ -215,7 +196,7 @@ export default {
 
   .waffle-extra {
     position:absolute;
-    bottom: 20px;
+    bottom: 0;
     left:  0;
     user-select: none;
     transition: all .3s;
@@ -230,11 +211,6 @@ export default {
     transition: all .3s;
     overflow: visible;
     z-index:0;
-  }
-
-  .waffle-plate.expanded {
-    transition: opacity .25s;
-    opacity: 0;
   }
 
   .waffle-item {
@@ -253,11 +229,6 @@ export default {
     right: 0;
     opacity: 0;
     transform: translateX(80%) translateY(40%);
-    transition: opacity .25s;
-  }
-
-  .layer-info.expanded {
-    opacity: 1;
     transition: opacity .25s;
   }
 </style>

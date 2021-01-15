@@ -1,29 +1,33 @@
 pragma solidity ^0.6.0;
 pragma experimental ABIEncoderV2;
 
+import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract WaffleMaker {
+    using SafeMath for uint;
+
+    uint constant PRIZE_POOL_COST_PERCENTAGE = 90; // The rest is given to the owner address as a dev fee
     uint constant MAX_NAME_BYTES = 20;
     uint constant MAX_DESCRIPTION_BYTES = 75;
     uint constant MAX_WAFFLE_LAYERS = 5;
     uint constant MAX_VOTES_PER_ACCOUNT = 3;
     uint constant COMPETITION_DURATION = 60 * 60 * 24 * 30;
-    uint constant BAKE_DURATION = 10;//60 * 60 * 24;
-    uint constant CUSTOMIZE_DURATION = 120;//60 * 60 * 24;
+    uint constant BAKE_DURATION = 60 * 60 * 24;
+    uint constant CUSTOMIZE_DURATION = 60 * 60 * 24;
     uint constant CUSTOMIZATION_STEPS_COUNT = 6;
-    uint constant CUSTOMIZATION_STEP_WINDOW_DURATION = 30;//60 * 60;
+    uint constant CUSTOMIZATION_STEP_WINDOW_DURATION = 60 * 60;
     uint24[CUSTOMIZATION_STEPS_COUNT] CUSTOMIZATION_STEP_WINDOWS = [
-    0,//0,
-    30,//60 * 60,
-    60,//60 * 60 * 9,
-    90,//60 * 60 * 17,
-    120,//60 * 60 * 24,
-    0
+        0,
+        60 * 60,
+        60 * 60 * 9,
+        60 * 60 * 17,
+        60 * 60 * 24,
+        0
     ];
     uint CREATE_WAFFLE_YFL_COST = 5000000000000000;
 
-    address public admin; // Also the address to which the 10% dev fund is sent to
+    address public owner; // Also the address to which the 10% dev fund is sent to
     uint public competitionEndTimestamp;
     ERC20 yfl;
     ERC20 wone;
@@ -49,7 +53,7 @@ contract WaffleMaker {
 
     struct WaffleItem {
         string name;
-        uint price;
+        uint woneCost;
     }
 
     struct WaffleLayer {
@@ -79,7 +83,12 @@ contract WaffleMaker {
         bool canVote;
     }
 
-    // ******************** MODIFIERS ***********************
+    // ******************** MODIFIERS ***********************\
+    modifier isOwner {
+        require(msg.sender == owner);
+        _;
+    }
+
     modifier competitionIsOngoing {
         require(block.timestamp < competitionEndTimestamp, "Competition must be ongoing");
         _;
@@ -116,31 +125,71 @@ contract WaffleMaker {
         _;
     }
 
-    constructor(ERC20 _yfl, ERC20 _wone) public {
-        admin = msg.sender;
+    constructor
+        (
+            ERC20 _yfl,
+            ERC20 _wone,
+            WaffleItem[] memory _toppings,
+            WaffleItem[] memory _bases,
+            WaffleItem[] memory _plates,
+            WaffleItem[] memory _extras
+        )
+        public
+    {
+        owner = msg.sender;
         competitionEndTimestamp = block.timestamp + COMPETITION_DURATION;
         yfl = _yfl;
         wone = _wone;
 
         toppings.push(WaffleItem('Empty', 0));
+        for (uint i = 0; i < _toppings.length; i++) {
+            toppings.push(WaffleItem(_toppings[i].name, _toppings[i].woneCost));
+        }
+
         bases.push(WaffleItem('Empty', 0));
+        for (uint i = 0; i < _bases.length; i++) {
+            bases.push(WaffleItem(_bases[i].name, _bases[i].woneCost));
+        }
+
         plates.push(WaffleItem('Plain Plate', 0));
+        for (uint i = 0; i < _plates.length; i++) {
+            plates.push(WaffleItem(_plates[i].name, _plates[i].woneCost));
+        }
+
         extras.push(WaffleItem('Empty', 0));
+        for (uint i = 0; i < _extras.length; i++) {
+            extras.push(WaffleItem(_extras[i].name, _extras[i].woneCost));
+        }
     }
 
+    function createTopping (string memory _name, uint _woneCost) external isOwner {
+        toppings.push(WaffleItem(_name, _woneCost));
+    }
+
+    function createBase (string memory _name, uint _woneCost) external isOwner {
+        bases.push(WaffleItem(_name, _woneCost));
+    }
+
+    function createExtra (string memory _name, uint _woneCost) external isOwner {
+        extras.push(WaffleItem(_name, _woneCost));
+    }
+
+    function createPlate (string memory _name, uint _woneCost) external isOwner {
+        plates.push(WaffleItem(_name, _woneCost));
+    }
 
     function createWaffle() external competitionIsOngoing {
         waffles.push(Waffle({
-        owner: msg.sender,
-        votes: 0,
-        name: "",
-        description: "",
-        plateId: 0,
-        extraId: 0,
-        layersCount: 0,
-        published: false,
-        processEnd: block.timestamp + BAKE_DURATION,
-        customizationStep: CustomizationStep.NOT_CUSTOMIZED
+            owner: msg.sender,
+            votes: 0,
+            name: "",
+            description: "",
+            plateId: 0,
+            extraId: 0,
+            layersCount: 0,
+            published: false,
+            processEnd: block.timestamp + BAKE_DURATION,
+            customizationStep: CustomizationStep.NOT_CUSTOMIZED
         }));
         addWaffleLayer(waffles.length - 1);
 
@@ -163,6 +212,11 @@ contract WaffleMaker {
         waffles[_waffleId].processEnd = block.timestamp + BAKE_DURATION;
     }
 
+    /**
+    *   Submit the customization for the top layer of a waffle if the top layer is not yet customized
+    *
+    *   Every layer can be given a base and a topping, but only the first layer can be given an extra and a plate
+    **/
     function submitWaffleCustomization
         (
             uint _waffleId,
@@ -180,20 +234,32 @@ contract WaffleMaker {
         waffleIsBeingProcessed(false, _waffleId)
     {
         require(waffles[_waffleId].customizationStep == CustomizationStep.NOT_CUSTOMIZED, "Last layer must not already be customized");
+        require(_baseId < bases.length, "Invalid base");
+        require(_toppingId < toppings.length, "Invalid topping");
 
+        uint woneCost = 0;
         if (waffles[_waffleId].layersCount <= 1) {
             require(stringIsNotEmpty(_name), "Waffle name can't be empty");
             require(stringSizeLowerOrEqual(_name, MAX_NAME_BYTES), "Max name length exceeded");
             require(stringSizeLowerOrEqual(_description, MAX_DESCRIPTION_BYTES), "Max description length exceeded");
+            require(_extraId < extras.length, "Invalid extra");
+            require(_plateId < plates.length, "Invalid plate");
 
             waffles[_waffleId].name = _name;
             waffles[_waffleId].description = _description;
             waffles[_waffleId].plateId = _plateId;
             waffles[_waffleId].extraId = _extraId;
+
+            woneCost.add(plates[_plateId].woneCost);
+            woneCost.add(extras[_extraId].woneCost);
         }
         uint lastLayerIndex = waffles[_waffleId].layersCount - 1;
         waffles[_waffleId].layers[lastLayerIndex].baseId = _baseId;
         waffles[_waffleId].layers[lastLayerIndex].toppingId = _toppingId;
+        woneCost.add(bases[_baseId].woneCost);
+        woneCost.add(toppings[_toppingId].woneCost);
+
+        spendWONE(woneCost);
         waffles[_waffleId].processEnd = block.timestamp + CUSTOMIZE_DURATION;
         calculateNextWaffleCustomizationStep(_waffleId);
     }
@@ -379,9 +445,23 @@ contract WaffleMaker {
         return strBytes.length <= _size;
     }
 
+    function spendYFL(uint amount) internal {
+        uint poolAmount = amount.mul(PRIZE_POOL_COST_PERCENTAGE).div(100);
+        uint ownerAmount = amount - poolAmount;
+        yfl.transferFrom(address(msg.sender), address(this), poolAmount);
+        yfl.transferFrom(address(msg.sender), owner, ownerAmount);
+    }
+
+    function spendWONE(uint amount) internal {
+        uint poolAmount = amount.mul(PRIZE_POOL_COST_PERCENTAGE).div(100);
+        uint ownerAmount = amount - poolAmount;
+        wone.transferFrom(address(msg.sender), address(this), poolAmount);
+        wone.transferFrom(address(msg.sender), owner, ownerAmount);
+    }
+
     function addWaffleLayer(uint _waffleId) internal {
         require(waffles[_waffleId].layersCount < MAX_WAFFLE_LAYERS, "You can't add more layers to this waffle");
-        // yfl.transferFrom(address(msg.sender), address(this), CREATE_WAFFLE_YFL_COST);
+        spendYFL(CREATE_WAFFLE_YFL_COST);
         waffles[_waffleId].layers[waffles[_waffleId].layersCount++] = WaffleLayer(0,0);
         waffles[_waffleId].customizationStep = CustomizationStep.NOT_CUSTOMIZED;
     }

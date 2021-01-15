@@ -1,5 +1,6 @@
 <template>
   <v-dialog
+    v-if="showDialog"
     :value="showDialog"
     fullscreen
     transition="fade-transition"
@@ -130,16 +131,11 @@ export default {
   }
 
   .dialog-container {
-    background: url(../../static/background.png) repeat;
+    background: url(~static/background.png) repeat;
     border-radius: 5px;
     overflow: hidden;
     animation: ScrollBackground 10s linear infinite;
     font-family: Roboto, serif;
-  }
-
-  .page-wrapper {
-    width: 100%;
-    transition: margin-top .25s;
   }
 
   @keyframes ScrollBackground {

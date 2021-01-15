@@ -329,12 +329,10 @@ export default {
     background-size: contain;
     font-size: 65px;
     text-shadow: -2px 0 #000000, 0 2px #000000, 2px 0 #000000, 0 -2px #000000;
-    animation: ScrollBackgroundHorizontal 5s linear infinite;
   }
 
   .faq-content-container {
     background: url(../static/home/faq-background.png) repeat;
-    animation: ScrollBackground 10s linear infinite;
   }
 
   .faq-title {
@@ -374,16 +372,6 @@ export default {
 
   .make-waffle-button.mobile {
     font-size: 20px !important;
-  }
-
-  @keyframes ScrollBackgroundHorizontal {
-    0% {
-      background-position: 0 0;
-    }
-
-    100% {
-      background-position: 70px 0;
-    }
   }
 
   @keyframes ScrollBackground {

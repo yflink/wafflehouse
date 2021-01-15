@@ -8,7 +8,7 @@ to create a blockchain based game incentivized by cash prizes and game theory.
 2. Configure .env with desired values
 3. Migrate contract
 ```
-truffle migrate --network (mainnet or testnet)
+truffle migrate --network INSERT_NETWORK (mainnet or testnet)
 ```
 
 ## Compile contracts for official networks

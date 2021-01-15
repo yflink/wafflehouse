@@ -14,7 +14,7 @@
         <span class="toolbar-button-span waffle-text-border" :class="{'mobile': $vuetify.breakpoint.smAndDown}">
           {{ label }}
         </span>
-        <v-img v-if="showWaffle" :src="require('~/static/waffles/waffle.png')" width="250" class="toolbar-button-waffle" />
+        <v-img v-if="showWaffle" :src="require('~/static/waffles/waffle.png')" width="200" class="toolbar-button-waffle" />
       </v-container>
     </v-img>
   </v-card>
@@ -46,10 +46,6 @@ export default {
 </script>
 
 <style scoped>
-  .matched {
-    filter: brightness(0.5);
-  }
-
   .toolbar-button-span {
     font-size: 50px;
     z-index: 10;
@@ -58,9 +54,5 @@ export default {
   .toolbar-button-waffle {
     position: absolute;
     z-index: 9;
-  }
-
-  .mobile {
-    font-size: 24px !important;
   }
 </style>

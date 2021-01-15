@@ -3,9 +3,9 @@
     :value="showDialog"
     transition="fade-transition"
     class="vh-center dialog"
-    :overlay-opacity="0.95"
     persistent
     no-click-animation
+    overlay-opacity="0.98"
   >
     <v-container class="page-container">
       <v-card class="vh-center" height="80vh" color="#000000FA" flat>

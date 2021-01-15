@@ -4,17 +4,27 @@ import { bnToNumber } from '~/utils/abi'
 import { CustomizationStep } from '~/enums'
 import { MAX_VOTES_PER_ACCOUNT, MAX_WAFFLE_LAYERS } from '~/constants'
 
-const loadFavorites = (): number[] => {
-  const favorites = JSON.parse(localStorage.getItem('favorites'))
+const loadHiddenWaffleIds = (): number[] => {
+  const favorites = JSON.parse(localStorage.getItem('hiddenWaffleIds'))
   return favorites || []
 }
 
-const saveFavorites = (favorites: number[]) => {
-  localStorage.setItem('favorites', JSON.stringify(favorites))
+const saveHiddenWaffleIds = (hiddenWaffleIds: number[]) => {
+  localStorage.setItem('hiddenWaffleIds', JSON.stringify(hiddenWaffleIds))
+}
+
+const loadFavoriteWaffleIds = (): number[] => {
+  const favorites = JSON.parse(localStorage.getItem('favoriteWaffleIds'))
+  return favorites || []
+}
+
+const saveFavoriteWaffleIds = (favoriteWaffleIds: number[]) => {
+  localStorage.setItem('favoriteWaffleIds', JSON.stringify(favoriteWaffleIds))
 }
 
 const processWaffleInfo = async (waffleId: number, waffleInfo: any) => {
-  const favorites = loadFavorites()
+  const favorites = loadFavoriteWaffleIds()
+  const hidden = loadHiddenWaffleIds()
   // layers is an array and is misinterpreted by insertOrUpdate if we don't convert
   const layersData = waffleInfo.layers.map((layer, index) => {
     return {
@@ -29,6 +39,7 @@ const processWaffleInfo = async (waffleId: number, waffleInfo: any) => {
       id: waffleId,
       name: waffleInfo.name,
       favorite: favorites.includes(waffleId),
+      hidden: hidden.includes(waffleId),
       description: waffleInfo.description,
       votes: bnToNumber(waffleInfo.votes),
       extraId: bnToNumber(waffleInfo.extraId),
@@ -65,7 +76,7 @@ const processWaffleInfo = async (waffleId: number, waffleInfo: any) => {
 export default {
   actions: {
     loadFavoriteWaffleIds () {
-      return loadFavorites()
+      return loadFavoriteWaffleIds()
     },
 
     async loadWaffles (_, waffleIds: number[]) {
@@ -78,10 +89,14 @@ export default {
     async loadPublishedWaffles (_, publishedWaffleIndices: number[]) {
       const waffleIds = []
       await Promise.all(publishedWaffleIndices.map(async (publishedWaffleIndex) => {
-        const waffleInfo = await this.$hmyContracts.WaffleMaker.methods.getPublishedWaffleInfo(publishedWaffleIndex).call()
-        const waffleId = bnToNumber(waffleInfo.id)
-        await processWaffleInfo(waffleId, waffleInfo)
-        waffleIds.push(waffleId)
+        try {
+          const waffleInfo = await this.$hmyContracts.WaffleMaker.methods.getPublishedWaffleInfo(publishedWaffleIndex).call()
+          const waffleId = bnToNumber(waffleInfo.id)
+          await processWaffleInfo(waffleId, waffleInfo)
+          waffleIds.push(waffleId)
+        } catch (e) {
+
+        }
       }))
       return waffleIds
     },
@@ -138,7 +153,7 @@ export default {
       }, { root: true })
     },
     bakeWaffleLayerFlow ({ dispatch }, waffleId: number) {
-      const waffle = Waffle.query().find(waffleId)
+      const waffle = Waffle.query().with('layers').find(waffleId)
       if (waffle.customizationStep !== CustomizationStep.DONE) {
         dispatch('dialogs/displayError', {
           title: 'Cannot Add Waffle Layer',
@@ -152,7 +167,7 @@ export default {
       } else {
         dispatch('dialogs/displayConfirmation', {
           title: 'Add New Waffle Layer?',
-          body: 'Your waffle will be open for voting, but you will not be able to customize it further.',
+          body: 'This will initiate a 24 hour baking period and will cost you 0.0005 YFL',
           affirmativeAction: () => {
             dispatch('bakeWaffleLayer', waffleId)
           },
@@ -204,7 +219,12 @@ export default {
       const votedWaffleIds = rootGetters['accounts/getVotedWaffleIds']
       const ownedWaffleIds = rootGetters['accounts/getOwnedWaffleIds']
       const canVote = rootGetters['accounts/getCanVote']
-      if (!canVote) {
+      if (votedWaffleIds.length === MAX_VOTES_PER_ACCOUNT) {
+        dispatch('dialogs/displayError', {
+          title: 'Vote Failed',
+          body: 'You\'ve reached the max amount of votes for this account.'
+        }, { root: true })
+      } else if (!canVote) {
         dispatch('dialogs/displayError', {
           title: 'Vote Failed',
           body: 'You must have published at least one waffle before you can vote for other people\'s waffles',
@@ -221,15 +241,11 @@ export default {
           title: 'Vote Failed',
           body: 'You can\'t vote for a waffle you\'ve already voted for.'
         }, { root: true })
-      } else if (votedWaffleIds.length === MAX_VOTES_PER_ACCOUNT) {
-        dispatch('dialogs/displayError', {
-          title: 'Vote Failed',
-          body: 'You\'ve reached the max amount of votes for this account.'
-        }, { root: true })
       } else {
+        const remainingVotes = MAX_VOTES_PER_ACCOUNT - votedWaffleIds.length - 1
         dispatch('dialogs/displayConfirmation', {
           title: 'Vote For This Waffle?',
-          body: `After this vote, this account will be allowed to vote ${votedWaffleIds.length - 1} more times.`,
+          body: `After this vote, this account will be allowed to vote ${remainingVotes} more time${remainingVotes > 1 ? 's' : ''}.`,
           affirmativeAction: () => {
             dispatch('voteWaffle', waffleId)
           },
@@ -239,8 +255,8 @@ export default {
     },
 
     setWaffleFavorite (_, { waffleId, value }) {
-      const favorites = loadFavorites()
-      const waffleFavoriteIndex = favorites.indexOf(waffleId)
+      const favoriteWaffleIds = loadFavoriteWaffleIds()
+      const waffleFavoriteIndex = favoriteWaffleIds.indexOf(waffleId)
 
       const updateStoreWaffleFavorite = (value: boolean) => {
         Waffle.update({
@@ -254,13 +270,38 @@ export default {
       }
 
       if (value && waffleFavoriteIndex === -1) {
-        favorites.push(waffleId)
+        favoriteWaffleIds.push(waffleId)
         updateStoreWaffleFavorite(true)
       } else if (!value && waffleFavoriteIndex !== -1) {
-        favorites.splice(waffleFavoriteIndex, 1)
+        favoriteWaffleIds.splice(waffleFavoriteIndex, 1)
         updateStoreWaffleFavorite(false)
       }
-      saveFavorites(favorites)
+      saveFavoriteWaffleIds(favoriteWaffleIds)
+    },
+
+    setWaffleHidden (_, { waffleId, value }) {
+      const hiddenWaffleIds = loadHiddenWaffleIds()
+      const waffleHiddenIndex = hiddenWaffleIds.indexOf(waffleId)
+
+      const updateStoreWaffleHidden = (value: boolean) => {
+        Waffle.update({
+          where: (waffle) => {
+            return waffle.id === waffleId
+          },
+          data: {
+            hidden: value
+          }
+        })
+      }
+
+      if (value && waffleHiddenIndex === -1) {
+        hiddenWaffleIds.push(waffleId)
+        updateStoreWaffleHidden(true)
+      } else if (!value && waffleHiddenIndex !== -1) {
+        hiddenWaffleIds.splice(waffleHiddenIndex, 1)
+        updateStoreWaffleHidden(false)
+      }
+      saveHiddenWaffleIds(hiddenWaffleIds)
     }
   },
 

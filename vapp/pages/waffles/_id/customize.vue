@@ -5,15 +5,20 @@
         It's Waffle Time!
       </v-row>
       <v-row>
-        <v-col cols="12" md="6">
-          <v-card class="wafflemaker-container" color="#000000AA" tile>
-            <v-card-title class="vh-center wafflemaker-title waffle-text">
-              Wafflemaker 9000
-            </v-card-title>
-            <v-card-text class="vh-center my-12">
-              <waffle-display :waffle="modifiedViewedWaffle" />
-            </v-card-text>
-          </v-card>
+        <v-col cols="12" md="6" class="px-10">
+          <v-row class="mb-2">
+            <v-card width="100%" class="wafflemaker-container" color="#000000AA" tile>
+              <v-card-title class="vh-center wafflemaker-title waffle-text">
+                Wafflemaker 9000
+              </v-card-title>
+              <v-card-text class="vh-center my-12">
+                <waffle-display :waffle="modifiedViewedWaffle" />
+              </v-card-text>
+            </v-card>
+          </v-row>
+          <v-row>
+            <Tip />
+          </v-row>
         </v-col>
         <v-col cols="12" md="6">
           <v-row v-if="showFullCustomization">
@@ -31,26 +36,33 @@
             />
           </v-row>
           <v-row>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="px-10">
               <select-field v-model="baseId" title="Base" :list="baseList" />
             </v-col>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="px-10">
               <select-field v-model="toppingId" title="Topping" :list="toppingList" />
             </v-col>
-            <v-col v-if="showFullCustomization" cols="12" md="6">
+            <v-col v-if="showFullCustomization" cols="12" md="6" class="px-10">
               <select-field v-model="extraId" title="Extra" :list="extraList" />
             </v-col>
-            <v-col v-if="showFullCustomization" cols="12" md="6">
+            <v-col v-if="showFullCustomization" cols="12" md="6" class="px-10">
               <select-field v-model="plateId" title="Plate" :list="plateList" />
             </v-col>
           </v-row>
-          <v-row class="vh-center">
-            <v-btn :disabled="!canSubmit" outlined @click="submitWaffleCustomization">
+          <v-row class="vh-center mb-2">
+            <v-btn :disabled="!canSubmit" outlined tile @click="submitWaffleCustomization">
               Confirm
             </v-btn>
           </v-row>
+          <v-row class="vh-center">
+            Cost: 50 WONE
+          </v-row>
+          <v-row class="vh-center">
+            Value: $0.25
+          </v-row>
         </v-col>
       </v-row>
+      <v-row class="vh-center my-6" />
     </v-col>
   </v-container>
 </template>
@@ -58,6 +70,7 @@
 <script lang="ts">
 import Waffle from '~/database/Waffle'
 import WaffleDisplay from '~/components/WaffleDisplay.vue'
+import Tip from '~/components/layout/Tip.vue'
 import baseList from '~/lists/waffle-bases'
 import toppingList from '~/lists/waffle-toppings'
 import plateList from '~/lists/waffle-plates'
@@ -68,7 +81,7 @@ import { MAX_NAME_LENGTH, MAX_DESCRIPTION_LENGTH } from '~/constants'
 export default {
   name: 'Customize',
   middleware: 'forceHmyWalletConnected',
-  components: { SelectField, WaffleDisplay },
+  components: { SelectField, WaffleDisplay, Tip },
   data () {
     return {
       loading: true,

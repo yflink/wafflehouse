@@ -33,6 +33,7 @@ export default class Waffle extends Model {
       description: this.string(''),
       votes: this.number(0),
       favorite: this.boolean(false),
+      hidden: this.boolean(false),
       extraId: this.number(0),
       plateId: this.number(0),
       published: this.boolean(false),

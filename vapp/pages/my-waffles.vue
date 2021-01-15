@@ -37,11 +37,8 @@
             Load Tokens
           </v-btn>
         </v-row>
-        <v-row class="vh-center mt-5">
-          Tip: You can bake multiple waffles at once
-        </v-row>
-        <v-row>
-          <v-checkbox v-model="hideBurnedWaffles" label="Hide Burned Waffles" />
+        <v-row class="mt-5">
+          <Tip />
         </v-row>
       </v-col>
     </v-row>
@@ -78,17 +75,18 @@
 import { mapGetters } from 'vuex'
 import Waffle from '~/database/Waffle'
 import InventoryWaffle from '~/components/InventoryWaffle'
+import Tip from '~/components/layout/Tip'
 import { WaffleStatus } from '~/enums'
 
 export default {
   name: 'MyWaffles',
   components: {
-    InventoryWaffle
+    InventoryWaffle,
+    Tip
   },
   middleware: 'forceHmyWalletConnected',
   data () {
     return {
-      hideBurnedWaffles: false,
       WaffleStatus
     }
   },
@@ -98,22 +96,12 @@ export default {
     }),
     accountWaffles () {
       const waffles = Waffle.getters('getActiveAccountWaffles')
-      if (this.hideBurnedWaffles) {
-        return waffles.filter((waffle) => {
-          return waffle.status(this.now) !== WaffleStatus.Burned
-        })
-      } else {
-        return waffles
-      }
-    }
-  },
-  watch: {
-    hideBurnedWaffles (value) {
-      localStorage.hideBurnedWaffles = value
+      return waffles.filter((waffle) => {
+        return !waffle.hidden
+      })
     }
   },
   async mounted () {
-    this.hideBurnedWaffles = localStorage.hideBurnedWaffles === 'true'
     if (this.$nuxt.$loading.start) {
       this.$nuxt.$loading.start()
     }
@@ -126,64 +114,12 @@ export default {
 </script>
 
 <style scoped>
-  .waffle-overlay {
-    position: absolute;
-    border-radius: 25px;
-    z-index: 500;
-  }
-
-  .waffle-subtitle {
-    font-size: 22px;
-  }
-
-  .waffle-container {
-    border-radius: 25px;
-    border: 6px rgba(255, 255, 255, 0.7) solid;
-    background: rgba(30, 188, 223, 0.33);
-  }
-
-  .votes-value {
-    font-size: 50px;
-  }
-
   .create-waffle-button {
     font-size: 40px;
     border-radius: 25px;
     border: 6px rgba(255, 255, 255, 0.7) solid;
     background: rgba(215, 215, 215, 0.33);
     user-select: none;
-  }
-
-  .option-button {
-    font-size: 20px;
-    border: 3px rgba(255, 255, 255, 0.7) solid;
-    background: rgba(215, 215, 215, 0.33);
-    user-select: none;
-    background: radial-gradient(50% 50% at 50% 50%, #4BADC2 0%, #1A6D9B 100%);
-  }
-
-  .option-button.disabled {
-    font-size: 20px;
-    border: 3px rgba(255, 255, 255, 0.7) solid;
-    background: rgba(215, 215, 215, 0.33);
-    user-select: none;
-    background: radial-gradient(50% 50% at 50% 50%, #1a3e46 0%, #0d2f41 100%) !important;
-  }
-
-  .option-button.left {
-    border-right: 1.5px rgba(255, 255, 255, 0.7) solid;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .option-button.right {
-    border-left: 1.5px rgba(255, 255, 255, 0.7) solid;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
   }
 
   .make-waffle-button {
@@ -193,9 +129,5 @@ export default {
     text-shadow: -2px 0 #000000, 0 2px #000000, 2px 0 #000000, 0 -2px #000000;
     border: 3px white solid;
     background: radial-gradient(50% 50% at 50% 50%, #4BADC2 0%, #003553 100%);
-  }
-
-  .make-waffle-button.mobile {
-    font-size: 20px !important;
   }
 </style>

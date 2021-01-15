@@ -7,21 +7,23 @@
 
       <v-row>
         <v-col cols="12" md="6">
-          <v-card class="wafflemaker-container" color="#000000AA" tile>
-            <h1 class="vh-center wafflemaker-title waffle-text">
-              Wafflemaker 9000
-            </h1>
-            <v-row>
-              <v-spacer />
-              <v-col cols="6">
-                <v-img :src="require('~/static/chef-yfl.png')" max-height="400" contain />
-              </v-col>
-              <v-col cols="6">
-                <v-img :src="require('~/static/chef-one.png')" max-height="400" contain />
-              </v-col>
-              <v-spacer />
-            </v-row>
-          </v-card>
+          <v-row>
+            <v-card class="wafflemaker-container" color="#000000AA" tile>
+              <h1 class="vh-center wafflemaker-title waffle-text">
+                Wafflemaker 9000
+              </h1>
+              <v-row>
+                <v-spacer />
+                <v-col cols="6">
+                  <v-img :src="require('~/static/chef-yfl.png')" max-height="400" contain />
+                </v-col>
+                <v-col cols="6">
+                  <v-img :src="require('~/static/chef-one.png')" max-height="400" contain />
+                </v-col>
+                <v-spacer />
+              </v-row>
+            </v-card>
+          </v-row>
         </v-col>
         <v-col cols="12" md="6" class="px-10">
           <v-row class="vh-center">
@@ -46,6 +48,9 @@
           </v-row>
         </v-col>
       </v-row>
+      <v-row class="vh-center my-10">
+        <Tip />
+      </v-row>
     </v-col>
   </v-container>
 </template>
@@ -53,9 +58,13 @@
 <script lang="ts">
 import { mapGetters } from 'vuex'
 import Waffle from '~/database/Waffle'
+import Tip from '~/components/layout/Tip.vue'
 
 export default {
   name: 'Create',
+  components: {
+    Tip
+  },
   middleware: 'forceHmyWalletConnected',
   computed: {
     ...mapGetters('accounts', {

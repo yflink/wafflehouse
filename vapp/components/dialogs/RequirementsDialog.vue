@@ -1,5 +1,6 @@
 <template>
   <v-dialog
+    v-if="value"
     :value="value"
     fullscreen
     transition="fade-transition"
@@ -97,15 +98,11 @@ export default {
 
 <style lang="scss" scoped>
 .dialog-container {
-  background: url(../../static/background.png) repeat;
   border-radius: 5px;
   overflow: hidden;
+  background: url('~static/background.png') repeat;
   animation: ScrollBackground 10s linear infinite;
   font-family: Roboto, serif;
-}
-
-.content-container {
-  max-width: 1250px;
 }
 
 @keyframes ScrollBackground {
@@ -116,6 +113,10 @@ export default {
   100% {
     background-position: 250px -250px;
   }
+}
+
+.content-container {
+  max-width: 1250px;
 }
 
 .extension-card {

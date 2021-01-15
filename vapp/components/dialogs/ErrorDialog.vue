@@ -5,9 +5,10 @@
     class="vh-center dialog"
     persistent
     no-click-animation
-    fullscreen
+    overlay-opacity="0.98"
+    overlay-color="black"
   >
-    <v-card class="vh-center" color="#000000FA" flat>
+    <v-card class="vh-center" color="transparent" flat>
       <v-col class="content-wrapper">
         <v-row class="vh-center mb-5 waffle-text-border">
           <h1>

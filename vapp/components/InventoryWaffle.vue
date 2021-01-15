@@ -1,58 +1,110 @@
 <template>
   <v-card width="100%" min-height="175px" class="vh-center waffle-container mx-5 mt-5">
-    <v-card v-if="waffle.hasOngoingProcess(now)" width="100%" height="100%" class="vh-center waffle-overlay waffle-text" color="#000000EE">
+    <v-card v-if="waffle.hasOngoingProcess(now)" width="100%" height="100%" class="vh-center waffle-overlay" color="#000000EE">
       <div class="fill-width">
         <v-row>
-          <v-col cols="12" md="8">
-            <v-row class="vh-center mb-5">
-              <h2>
-                Currently Baking...
-              </h2>
-            </v-row>
-            <v-row class="vh-center">
-              Status: {{ waffle.statusLabel(now) }}
-            </v-row>
-            <v-row class="vh-center">
-              <countdown-timer :end-timestamp="waffle.processEnd" />
-            </v-row>
+          <v-col cols="12" :md="showAddIngredientButton ? 8 : 12" class="waffle-text vh-center">
+            <div>
+              <v-row class="vh-center mb-5">
+                <h2>
+                  Currently Baking...
+                </h2>
+              </v-row>
+              <v-row class="vh-center">
+                Status: {{ waffle.statusLabel(now) }}
+              </v-row>
+              <v-row class="vh-center">
+                <countdown-timer :end-timestamp="waffle.processEnd" />
+              </v-row>
+            </div>
           </v-col>
-          <v-col cols="12" md="4" class="px-5 vh-center">
-            <v-btn
-              v-if="showAddIngredientButton"
-              class="add-ingredient-button"
-              :disabled="!waffle.isActionRequired(now)"
-              width="80%"
-              height="125"
-              @click="advanceWaffleCustomizationStep(waffle.id)"
-            >
-              <v-col>
-                <v-row class="vh-center waffle-text mb-5">
-                  <h1>
-                    Add Ingredient
-                  </h1>
-                </v-row>
-                <template v-if="waffle.isActionRequired(now)">
-                  <v-row class="vh-center">
-                    Time Remaining:
-                  </v-row>
-                  <v-row class="vh-center">
-                    <countdown-timer :end-timestamp="waffle.customizationWindowEnd" />
-                  </v-row>
+          <v-col v-if="showAddIngredientButton" cols="12" md="4" class="px-12">
+            <v-row class="vh-center mb-1">
+              <v-tooltip
+                transition="fade-transition"
+                bottom
+                max-width="250"
+                color="black"
+              >
+                <template v-slot:activator="{ on }">
+                  <span class="add-ingredient-info-label waffle-text" v-on="on">
+                    What is this?
+                  </span>
                 </template>
-                <template v-else>
-                  <v-row class="vh-center">
-                    Next Ingredient In:
+                You must trigger this transaction to add the ingredient before the end of the timer, failing to do so will result in you burning your waffle.
+                <br><br>
+                There are up to 4 windows of time to act within depending on how many items are being added to the waffle.
+                <br><br>
+                You will not recover the spent tokens if you burn your waffle.
+              </v-tooltip>
+            </v-row>
+            <v-row>
+              <v-btn
+                class="add-ingredient-button"
+                color="blue"
+                :disabled="!waffle.isActionRequired(now)"
+                width="100%"
+                height="125"
+                @click="advanceWaffleCustomizationStep(waffle.id)"
+                v-on="on"
+              >
+                <v-col>
+                  <v-row class="vh-center waffle-text mb-5">
+                    <h1>
+                      Add Ingredient
+                    </h1>
                   </v-row>
-                  <v-row class="vh-center">
-                    <countdown-timer :end-timestamp="waffle.customizationWindowStart" />
-                  </v-row>
-                </template>
-              </v-col>
-            </v-btn>
+                  <template v-if="waffle.isActionRequired(now)">
+                    <v-row class="vh-center">
+                      Time Remaining:
+                    </v-row>
+                    <v-row class="vh-center">
+                      <countdown-timer :end-timestamp="waffle.customizationWindowEnd" />
+                    </v-row>
+                  </template>
+                  <template v-else>
+                    <v-row class="vh-center">
+                      Next Ingredient In:
+                    </v-row>
+                    <v-row class="vh-center">
+                      <countdown-timer :end-timestamp="waffle.customizationWindowStart" />
+                    </v-row>
+                  </template>
+                </v-col>
+              </v-btn>
+            </v-row>
           </v-col>
         </v-row>
       </div>
     </v-card>
+    <v-card v-if="waffle.status(now) === WaffleStatus.Burned" width="100%" height="100%" class="vh-center waffle-overlay" color="#000000EE">
+      <div class="fill-width mx-10">
+        <v-row>
+          <v-col cols="12">
+            <v-row class="vh-center waffle-text mb-2">
+              <h2>
+                You've burned this waffle...
+              </h2>
+            </v-row>
+            <v-row class="vh-center mb-2">
+              <span>
+                Oh boy, you've really done it now, you've missed the time window to add the ingredients...
+              </span>
+              <br>
+              <span>
+                Don't worry, you can just hide this mess and try again!
+              </span>
+            </v-row>
+            <v-row class="vh-center">
+              <v-btn outlined tile @click="hideWaffle(waffle.id)">
+                Hide Waffle
+              </v-btn>
+            </v-row>
+          </v-col>
+        </v-row>
+      </div>
+    </v-card>
+
     <v-row class="vh-center">
       <v-col class="mt-5 vh-center" cols="12" md="4" order="2" order-md="1">
         <waffle-display :width="175" :waffle="waffle" />
@@ -110,14 +162,7 @@
         </v-row>
       </v-col>
       <v-col cols="12" md="3" order="3" order-md="3" class="px-10">
-        <template v-if="waffle.status(now) === WaffleStatus.Burned">
-          <v-col cols="12" md="3" order="3" order-md="3" class="px-10">
-            <v-row class="vh-center waffle-text-border-black" style="color:red;">
-              BURNED!
-            </v-row>
-          </v-col>
-        </template>
-        <template v-else-if="waffle.published">
+        <template v-if="waffle.published">
           <v-row class="vh-center waffle-text-border-black">
             <h1>
               Votes
@@ -172,6 +217,12 @@ export default {
     }
   },
   methods: {
+    hideWaffle (waffleId) {
+      Waffle.dispatch('setWaffleHidden', {
+        waffleId,
+        value: true
+      })
+    },
     publishWaffle (waffleId) {
       Waffle.dispatch('publishWaffleFlow', waffleId)
     },
@@ -202,10 +253,6 @@ export default {
   z-index: 500;
 }
 
-.waffle-subtitle {
-  font-size: 22px;
-}
-
 .waffle-container {
   border-radius: 25px;
   border: 6px rgba(255, 255, 255, 0.7) solid;
@@ -217,13 +264,6 @@ export default {
   background: rgba(215, 215, 215, 0.33);
   user-select: none;
   background: radial-gradient(50% 50% at 50% 50%, #4BADC2 0%, #1A6D9B 100%);
-}
-
-.option-button.disabled {
-  border: 3px rgba(255, 255, 255, 0.7) solid;
-  background: rgba(215, 215, 215, 0.33);
-  user-select: none;
-  background: radial-gradient(50% 50% at 50% 50%, #1a3e46 0%, #0d2f41 100%) !important;
 }
 
 .option-button.left {
@@ -238,5 +278,10 @@ export default {
 
 .add-ingredient-button {
   font-size: 10px;
+}
+
+.add-ingredient-info-label {
+  text-decoration: underline;
+  cursor: pointer;
 }
 </style>

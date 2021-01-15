@@ -22,9 +22,65 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Initial commit">
+    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Added spending when creating new waffle, adding new waffle layer and customizing.&#10;Fixed every QA issues">
+      <change afterPath="$PROJECT_DIR$/lists/waffle-bases.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lists/waffle-extras.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lists/waffle-plates.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lists/waffle-toppings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vapp/components/dialogs/SpendingDialog.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vapp/components/layout/Tip.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vapp/pages/rules.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vapp/static/tokens/one.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vapp/static/tokens/yfl.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/WaffleMaker.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/WaffleMaker.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/3_deploy_wafflemaker.js" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/3_deploy_wafflemaker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/InventoryWaffle.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/InventoryWaffle.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/WaffleDisplay.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/WaffleDisplay.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/WalletButton.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/ConfirmDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/ConfirmDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/ErrorDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/ErrorDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/ProcessingDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/ProcessingDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/RequirementsDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/RequirementsDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/WaffleViewerDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/WaffleViewerDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/Toolbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarNews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarNews.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/database/Waffle/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Waffle/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/database/Waffle/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Waffle/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/enums/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/enums/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/interfaces/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/interfaces/global.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/lists/news-tickers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/news-tickers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/lists/tips.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/tips.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/lists/waffle-bases.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/waffle-bases.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/lists/waffle-extras.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/waffle-extras.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/lists/waffle-plates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/waffle-plates.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/lists/waffle-toppings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/waffle-toppings.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/my-waffles.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/my-waffles.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/vote.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/vote.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/waffles/_id/customize.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/waffles/_id/customize.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/waffles/create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/waffles/create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/background.png" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/static/background.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/home/faq-background.png" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/static/home/faq-background.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/ampl.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/dai.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/eth.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/lend.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/link.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/liqlo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/rtc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/susd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/sushi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/swsh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/usdc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/usdt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/tokens/yfi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/waffles/extras/firebackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/static/waffles/extras/firebackground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/waffles/extras/oceanbackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/static/waffles/extras/ribbon.png" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/static/waffles/extras/ribbon.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +93,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Solidity Contract" />
         <option value="Vue Single File Component" />
         <option value="TypeScript File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -171,6 +227,10 @@
       <workItem from="1608536716180" duration="13333000" />
       <workItem from="1608550400858" duration="233000" />
       <workItem from="1608557817384" duration="2082000" />
+      <workItem from="1608625528555" duration="25212000" />
+      <workItem from="1609348593384" duration="6803000" />
+      <workItem from="1610481741448" duration="12110000" />
+      <workItem from="1610630821760" duration="19062000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented waffle display">
       <created>1602652763796</created>
@@ -284,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608549791842</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Initial commit">
+      <created>1608570362613</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1608570362613</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +387,8 @@
     <MESSAGE value="Transitioned project environment to support Harmony" />
     <MESSAGE value="Implemented full waffle customization flow, implemented vote and recent waffles" />
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Added spending when creating new waffle, adding new waffle layer and customizing.&#10;Fixed every QA issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added spending when creating new waffle, adding new waffle layer and customizing.&#10;Fixed every QA issues" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

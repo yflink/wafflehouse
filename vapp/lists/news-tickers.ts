@@ -60,7 +60,6 @@ const newsTickers: String[] = [
   'Man found on desert island, diet subsisted solely of waffles and goats milk.',
   'New topping becomes mega-hit among the elderly, based on crumble crake mixture',
   'Scientists discover we ARE in fact living in a simulation. Close this tab immediately!',
-  '⛥ Y̵̧͈͉̱̓̈́̚͜O̵̤̖͉͗͊̔̐̕Ũ̶̼̂͒̍̓ ̸̙̈́̚S̷̨̧̖̥̑̅͋̀̅Ḥ̷̛͚̎͊̂A̴̡͙̋̋͂̊́L̸͍̦̖̰̮̕L̴̩̺͇̪̕̚͜͝ ̵̢͉͔̤̬̋͆͊͋S̴̭͇̗̩̩̉́U̷͕̬͈͎̇͐͋̓B̵̥͉̍͜ͅM̴̡̛̜̜̦̊̉͛I̸̧͎̠͖̋̔T̸͉̥͍̰̆̔͘ͅ ̶̺͋͆ͅT̴̬̳̠͖͙̀̔͠͝O̸͔͆̃ ̷̡̗͍͎̰̔̓͠Ŏ̶̱̝̣̫̈́̂U̸̬̔̏̈́́͘Ȑ̶̘̞̠̳ ̴̼͍̳͉́͌̑̇̃P̸͉̲͋́͜I̶̟͎̗͑̓́͐O̷̰̗̥̺͗͜Ẅ̶̦̖́͂̆̏E̵̺̅R̵̨̧̘͎̽ ⛧ declares local waffle overlord',
   'WAKE UP! YOU\'RE IN A COMA AND I\'VE BEEN TRYING TO GET YOU THIS MESSAGE FOR YEARS THE DOCTORS HAVE FOUND THAT IN YOUR DREAMS YOU SEE ME AS SOME WAFFLE CRYPTOCURRENCY GAME BUT I AM ACTUALLY YOUR MOTHER PLEASE WAKE UP',
   'Man awarded Nobel Prize for discovering over 300 uses for waffles.',
   'Monk protests war, refuses to eat waffles for over 40 days - world watches in awe.',

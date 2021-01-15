@@ -1,14 +1,13 @@
 <template>
   <v-dialog
-    :value="showDialog"
+    :value="true"
     transition="fade-transition"
     class="vh-center dialog"
     persistent
     no-click-animation
-    overlay-opacity="0.98"
-    overlay-color="black"
+    fullscreen
   >
-    <v-card class="vh-center" color="transparent" flat>
+    <v-card class="vh-center" color="#000000FA" flat>
       <v-col class="content-wrapper">
         <v-row class="vh-center mb-5 waffle-text-border">
           <h1>
@@ -16,7 +15,7 @@
           </h1>
         </v-row>
         <v-row class="vh-center mb-5 text-center">
-          {{ body }}
+          You're not
         </v-row>
         <v-row>
           <v-col cols="6" class="vh-center">
@@ -40,7 +39,7 @@ import { mapGetters, mapActions } from 'vuex'
 import { DialogType } from '~/enums'
 
 export default {
-  name: 'ConfirmDialog',
+  name: 'SpendingDialog',
   data () {
     return {
       title: null,
@@ -58,7 +57,7 @@ export default {
     }),
 
     showDialog () {
-      return this.dialogType === DialogType.Confirm
+      return this.dialogType === DialogType.Spending
     }
   },
   watch: {
