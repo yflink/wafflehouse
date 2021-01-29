@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Flames",
+        "oneCost": "135000000000000000000"
+    },
+    {
+        "name": "Ribbon",
+        "oneCost": "135000000000000000000"
+    },
+    {
+        "name": "Sprinkles",
+        "oneCost": "135000000000000000000"
+    },
+    {
+        "name": "Hearts",
+        "oneCost": "135000000000000000000"
+    },
+    {
+        "name": "Chocolate Lines",
+        "oneCost": "135000000000000000000"
+    },
+    {
+        "name": "Strudel Lines",
+        "oneCost": "135000000000000000000"
+    },
+    {
+        "name": "Angel Wings",
+        "oneCost": "135000000000000000000"
+    },
+    {
+        "name": "Demon Wings",
+        "oneCost": "135000000000000000000"
+    }
+]

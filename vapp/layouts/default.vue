@@ -5,6 +5,7 @@
         <requirements-dialog :value="!showApp" />
         <template v-if="showApp">
           <waffle-viewer-dialog />
+          <fund-dialog />
           <processing-dialog />
           <confirm-dialog />
           <error-dialog />
@@ -23,10 +24,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import WaffleViewerDialog from '../components/dialogs/WaffleViewerDialog'
 import Teaser from '../components/Teaser'
 import hmyWallet from '~/wallets/hmy'
-
+import WaffleViewerDialog from '~/components/dialogs/WaffleViewerDialog'
+import FundDialog from '~/components/dialogs/FundDialog'
 import RequirementsDialog from '~/components/dialogs/RequirementsDialog'
 import ProcessingDialog from '~/components/dialogs/ProcessingDialog'
 import ConfirmDialog from '~/components/dialogs/ConfirmDialog'
@@ -37,6 +38,7 @@ export default {
   name: 'Default',
   components: {
     Teaser,
+    FundDialog,
     WaffleViewerDialog,
     ErrorDialog,
     RequirementsDialog,

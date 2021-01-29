@@ -46,6 +46,10 @@ export default {
 </script>
 
 <style scoped>
+  .matched {
+    filter: brightness(0.5);
+  }
+
   .toolbar-button-span {
     font-size: 50px;
     z-index: 10;
@@ -54,5 +58,9 @@ export default {
   .toolbar-button-waffle {
     position: absolute;
     z-index: 9;
+  }
+
+  .mobile {
+    font-size: 24px !important;
   }
 </style>

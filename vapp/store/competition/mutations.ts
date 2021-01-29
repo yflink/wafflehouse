@@ -4,7 +4,7 @@ import { CompetitionState } from '~/store/competition/state'
 // ************ PAYLOADS *************
 interface SetCompetitionDataPayload {
   onePrize: number;
-  yflPrize: number;
+  currencyPrize: number;
   competitionEndTimestamp: number;
   publishedWafflesCount: number;
 }
@@ -14,9 +14,9 @@ interface SetPublishedWafflesCOunt {
 
 // ************ MUTATIONS *************
 const mutations: MutationTree<CompetitionState> = {
-  SET_COMPETITION_DATA (state, { onePrize, yflPrize, competitionEndTimestamp, publishedWafflesCount }: SetCompetitionDataPayload) {
+  SET_COMPETITION_DATA (state, { onePrize, currencyPrize, competitionEndTimestamp, publishedWafflesCount }: SetCompetitionDataPayload) {
     state.onePrize = onePrize
-    state.yflPrize = yflPrize
+    state.currencyPrize = currencyPrize
     state.competitionEndTimestamp = competitionEndTimestamp
     state.publishedWafflesCount = publishedWafflesCount
   },

@@ -14,7 +14,7 @@
               +{{ onePrize }} ONE
             </v-row>
             <v-row class="waffle-text vh-center">
-              +{{ yflPrize }} YFL
+              +{{ currencyPrize }} YFL
             </v-row>
           </v-col>
         </v-img>
@@ -243,7 +243,7 @@ export default {
     }),
     ...mapGetters('competition', {
       onePrize: 'getOnePrize',
-      yflPrize: 'getYflPrize',
+      currencyPrize: 'getCurrencyPrize',
       competitionEndTimestamp: 'getCompetitionEndTimestamp',
       publishedWafflesCount: 'getPublishedWafflesCount'
     }),

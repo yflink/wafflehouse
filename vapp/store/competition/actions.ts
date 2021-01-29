@@ -6,16 +6,20 @@ import { bnToNumber } from '~/utils/abi'
 // ************ ACTIONS *************
 const actions: ActionTree<CompetitionState, RootState> = {
   async loadCompetitionData ({ commit }) {
+    const waffleMakerAddress = this.$hmyContracts.WaffleMaker.address
+    console.log(await this.$hmy.blockchain.getBalance({ address: waffleMakerAddress }))
     const results = await Promise.all([
+      this.$hmy.blockchain.getBalance({ address: waffleMakerAddress }),
+      this.$hmyContracts.Currency.methods.balanceOf(waffleMakerAddress).call(),
       this.$hmyContracts.WaffleMaker.methods.competitionEndTimestamp().call(),
       this.$hmyContracts.WaffleMaker.methods.getPublishedWafflesCount().call()
     ])
 
     commit('SET_COMPETITION_DATA', {
-      onePrize: 0,
-      yflPrize: 0,
-      competitionEndTimestamp: bnToNumber(results[0]),
-      publishedWafflesCount: bnToNumber(results[1])
+      onePrize: results[0].result,
+      currencyPrize: results[1],
+      competitionEndTimestamp: bnToNumber(results[2]),
+      publishedWafflesCount: bnToNumber(results[3])
     })
   },
 

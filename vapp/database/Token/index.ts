@@ -7,6 +7,8 @@ export default class Token extends Model {
   ticker: string;
   price: string;
   decimals: number;
+  balance: string;
+  approved: string;
 
   static fields () {
     return {
@@ -14,7 +16,9 @@ export default class Token extends Model {
       name: this.string(''),
       contract: this.string(''),
       price: this.string('0'),
-      decimals: this.number(18)
+      decimals: this.number(18),
+      balance: this.string('0'),
+      approved: this.string('0')
     }
   }
 

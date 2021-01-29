@@ -13,10 +13,11 @@ module.exports = {
     }
   },
   networks: {
+    // Used only to see if migrations work
     development: {
       host: "127.0.0.1",
-      port: 9545,
-      network_id: "*"
+      port: 8545,
+      network_id: "5777"
     },
     testnet: {
       network_id: '2',

@@ -7,8 +7,8 @@ const getters: GetterTree<CompetitionState, RootState> = {
     return onePrize
   },
 
-  getYflPrize ({ yflPrize }) {
-    return yflPrize
+  getCurrencyPrize ({ currencyPrize }) {
+    return currencyPrize
   },
 
   getCompetitionEndTimestamp ({ competitionEndTimestamp }) {

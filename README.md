@@ -18,6 +18,14 @@ truffle migrate --network INSERT_NETWORK (mainnet or testnet)
 npm run compile
 ```
 
+## Add new ingredients to a deployed contract
+
+1. Add ingredient at the end of one of the 4 lists in the "lists" folder
+2. Run following command
+```
+truffle migrate --network INSERT_NETWORK (mainnet or testnet) -f 3
+```
+
 ## Run Frontend
 
 ```

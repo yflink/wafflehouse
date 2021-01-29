@@ -5,12 +5,16 @@
         <v-col cols="12" md="2" class="news-title vh-center pa-3">
           BREAKING NEWS
         </v-col>
-        <v-col cols="12" md="10" class="news-background vh-center">
-          <div ref="label" class="news-label animated" :style="labelStyle">
-            <span>
-              {{ label }}
-            </span>
-          </div>
+        <v-col v-if="ready" cols="12" md="10" class="news-background vh-center">
+          <vue-marquee direction="left" :show-progress="false" :duration="duration" style="width:100vw; height:25px;">
+            <vue-marquee-slide v-for="(ticker, index) in newsTickers" :key="index" class="news-label">
+              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+              *
+              {{ ticker }}
+              *
+              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            </vue-marquee-slide>
+          </vue-marquee>
         </v-col>
       </v-row>
     </v-card>
@@ -18,42 +22,38 @@
 </template>
 
 <script>
+import { Marquee, Slide } from 'vue-marquee-component'
 import newsTickers from '~/lists/news-tickers'
 
 export default {
   name: 'ToolbarNews',
+  components: {
+    [Marquee.name]: Marquee,
+    [Slide.name]: Slide
+  },
   data () {
     return {
-      label: '',
-      animationTime: 0
+      ready: false,
+      newsTickers
     }
   },
   computed: {
-    labelStyle () {
-      return {
-        'animation-duration': `${this.animationTime}s`
-      }
+    duration () {
+      return this.newsTickers.length * 11000
     }
   },
   mounted () {
-    this.generateNews()
-    this.mountIntervalNews()
+    this.shuffleTickers()
+    this.ready = true
   },
   methods: {
-    getRandomTicker () {
-      const randomIndex = Math.floor(Math.random() * newsTickers.length)
-      return newsTickers[randomIndex]
-    },
-
-    mountIntervalNews () {
-      const self = this
-      this.$refs.label.onanimationiteration = () => {
-        self.generateNews()
+    shuffleTickers () {
+      for (let i = this.newsTickers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        const temp = this.newsTickers[i]
+        this.newsTickers[i] = this.newsTickers[j]
+        this.newsTickers[j] = temp
       }
-    },
-    generateNews () {
-      this.label = this.getRandomTicker()
-      this.animationTime = this.label.length / 6
     }
   }
 }

@@ -187,6 +187,10 @@ export default {
     user-select: none;
   }
 
+  .expandable {
+    cursor: pointer;
+  }
+
   .waffle {
     position:absolute;
     bottom:0;
@@ -213,6 +217,11 @@ export default {
     z-index:0;
   }
 
+  .waffle-plate.expanded {
+    transition: opacity .25s;
+    opacity: 0;
+  }
+
   .waffle-item {
     position: absolute;
     width: 100%;
@@ -229,6 +238,11 @@ export default {
     right: 0;
     opacity: 0;
     transform: translateX(80%) translateY(40%);
+    transition: opacity .25s;
+  }
+
+  .layer-info.expanded {
+    opacity: 1;
     transition: opacity .25s;
   }
 </style>

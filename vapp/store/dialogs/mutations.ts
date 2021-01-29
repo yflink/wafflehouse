@@ -27,6 +27,15 @@ const mutations: MutationTree<DialogsState> = {
     state.title = title
     state.dialogType = DialogType.Process
   },
+  SET_SPENDING_DATA (state, { title, body, affirmativeAction, affirmativeLabel, negativeAction, negativeLabel }: SetConfirmDataPayload) {
+    state.title = title || 'Are you sure?'
+    state.body = body || ''
+    state.affirmativeAction = affirmativeAction
+    state.affirmativeLabel = affirmativeLabel || 'Understood'
+    state.negativeAction = negativeAction || function () {}
+    state.negativeLabel = negativeLabel || 'Nevermind'
+    state.dialogType = DialogType.Confirm
+  },
   SET_CONFIRM_DATA (state, { title, body, affirmativeAction, affirmativeLabel, negativeAction, negativeLabel }: SetConfirmDataPayload) {
     state.title = title || 'Are you sure?'
     state.body = body || ''

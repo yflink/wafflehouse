@@ -41,7 +41,6 @@ export enum CustomizationStep {
 }
 
 export enum Ticker {
-  ONE,
-  WONE,
-  YFL
+  ONE = 'ONE',
+  CURRENCY = 'CURRENCY'
 }

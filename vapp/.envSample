@@ -1,2 +1,3 @@
 // mainnet or testnet
 APP_ENVIRONMENT='mainnet'
+ADMIN_BOARD_PASSWORD='INSERT PASSWORD'

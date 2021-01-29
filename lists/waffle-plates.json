@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Black Plate",
+        "oneCost": "200000000000000000000"
+    },
+    {
+        "name": "Pink Plate",
+        "oneCost": "200000000000000000000"
+    },
+    {
+        "name": "Orange Plate",
+        "oneCost": "200000000000000000000"
+    },
+    {
+        "name": "Blue Plate",
+        "oneCost": "200000000000000000000"
+    },
+    {
+        "name": "Purple Plate",
+        "oneCost": "200000000000000000000"
+    },
+    {
+        "name": "Red Plate",
+        "oneCost": "200000000000000000000"
+    },
+    {
+        "name": "Yellow Plate",
+        "oneCost": "200000000000000000000"
+    },
+    {
+        "name": "Glass Plate",
+        "oneCost": "200000000000000000000"
+    },
+    {
+        "name": "Gold Plate",
+        "oneCost": "1000000000000000000000"
+    }
+]

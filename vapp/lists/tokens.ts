@@ -1,23 +1,33 @@
+import { Ticker } from '~/enums'
+
 export interface TokenData {
   name: string;
-  contract: string;
+  contract?: string;
   decimals: number;
+  coinGeckoId: string;
 }
 
-export interface TokenList {
-  [ticker: string]: TokenData;
+export type TokenList = {
+  [ticker in Ticker]: TokenData
 }
 
 const tokenList: TokenList = {
-  YFL: {
-    name: 'YFLink',
-    contract: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
-    decimals: 18
+  [Ticker.ONE]: {
+    name: 'ONE',
+    decimals: 18,
+    coinGeckoId: 'harmony'
   },
-  ONE: {
-    name: 'Harmony',
-    contract: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
-    decimals: 18
+  [Ticker.WONE]: {
+    name: 'WONE',
+    contract: process.env.HARMONY_WONE_ADDRESS,
+    decimals: 18,
+    coinGeckoId: 'harmony'
+  },
+  [Ticker.YFL]: {
+    name: 'YFLink ETH',
+    contract: process.env.HARMONY_YFL_ADDRESS,
+    decimals: 18,
+    coinGeckoId: 'yflink'
   }
 }
 

@@ -1,27 +1,17 @@
 [
   {
-    "contractName": "YFLink",
-    "address": "0xD74c3b693054C9a1aB49E07be1285928A6911556",
-    "transactionHash": "0x36adb62f204f37faa8ed8d2ddaa929321673d015ad8ca2656bef59dc55381a18"
+    "contractName": "WaffleMaker",
+    "address": "0xA0b66553f1edB7FCfdAA9A7d7A493668321154c0",
+    "transactionHash": "0x143b6d6567539514c1a25822ad6de58fd89ea254f6450be5fc4810e2174cbe0b"
   },
   {
     "contractName": "WaffleMaker",
-    "address": "0xBE601F3993d98E537929B89e1b22B39CD9CF0CEF",
-    "transactionHash": "0x941c05519eb29934c789ef58741bab66d66035d075b1421a81a06c08b9a0733a"
+    "address": "0x1aF1014f6E55E3Ff73a6fB6f5Db453AE52F81Ddb",
+    "transactionHash": "0x717b042ab3fce05011e156db8f196569b1a4f96270073bbd9f5f424c5ba15b78"
   },
   {
     "contractName": "WaffleMaker",
-    "address": "0x99946E5a167078900Fd2A688d4d88657F075f2d1",
-    "transactionHash": "0x52bb6c5b1e41b0fa9a71ad06abffcfbeaf7e0837fce62eabebdbc2d3f0c28cf9"
-  },
-  {
-    "contractName": "WaffleMaker",
-    "address": "0x3B9270F584f193a9EBB5EcB47C07E64158D42976",
-    "transactionHash": "0xb4dbaafe80c4592adf3b4c99ee6b0668954eb5f00d3634f43fabe3df434fabf5"
-  },
-  {
-    "contractName": "WaffleMaker",
-    "address": "0x39b451AA582c8fA6fc6bcaB796708982B0e99056",
-    "transactionHash": "0x5118c15c19eb91c57107fcb90beb94b91733124fed33ef139509d2efc36ea57c"
+    "address": "0x1aF1014f6E55E3Ff73a6fB6f5Db453AE52F81Ddb",
+    "transactionHash": "0xce0e40e484bab90950b5c7517a63054d1d3929a1758179f5873ca4b16b37ea52"
   }
 ]

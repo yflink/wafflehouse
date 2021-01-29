@@ -2,7 +2,7 @@ import Waffle from '~/database/Waffle'
 import WaffleLayer from '~/database/WaffleLayer'
 import { bnToNumber } from '~/utils/abi'
 import { CustomizationStep } from '~/enums'
-import { MAX_VOTES_PER_ACCOUNT, MAX_WAFFLE_LAYERS } from '~/constants'
+import { LEADERBOARD_WAFFLE_COUNT, MAX_VOTES_PER_ACCOUNT, MAX_WAFFLE_LAYERS } from '~/constants'
 
 const loadHiddenWaffleIds = (): number[] => {
   const favorites = JSON.parse(localStorage.getItem('hiddenWaffleIds'))
@@ -91,6 +91,26 @@ export default {
       await Promise.all(publishedWaffleIndices.map(async (publishedWaffleIndex) => {
         try {
           const waffleInfo = await this.$hmyContracts.WaffleMaker.methods.getPublishedWaffleInfo(publishedWaffleIndex).call()
+          const waffleId = bnToNumber(waffleInfo.id)
+          await processWaffleInfo(waffleId, waffleInfo)
+          waffleIds.push(waffleId)
+        } catch (e) {
+
+        }
+      }))
+      return waffleIds
+    },
+
+    async loadLeaderboardWaffles () {
+      const waffleIds = []
+      const leaderboardIndices = []
+      for (let i = 0; i < LEADERBOARD_WAFFLE_COUNT; i++) {
+        leaderboardIndices.push(i)
+      }
+
+      await Promise.all(leaderboardIndices.map(async (leaderboardIndex) => {
+        try {
+          const waffleInfo = await this.$hmyContracts.WaffleMaker.methods.getLeaderboardWaffleInfo(leaderboardIndex).call()
           const waffleId = bnToNumber(waffleInfo.id)
           await processWaffleInfo(waffleId, waffleInfo)
           waffleIds.push(waffleId)

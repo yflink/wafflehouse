@@ -6,6 +6,9 @@ import { DialogsState } from '~/store/dialogs/state'
 interface DisplayProcessPayload {
   title: string;
 }
+interface DisplaySpendingPayload {
+  title: string;
+}
 interface DisplayConfirmationPayload{
   title?: string;
   body?: string;
@@ -25,6 +28,9 @@ interface SetErrorDataPayload {
 const actions: ActionTree<DialogsState, RootState> = {
   displayProcess ({ commit }, payload: DisplayProcessPayload) {
     commit('SET_PROCESS_DATA', payload)
+  },
+  displaySpending ({ commit }, payload: DisplaySpendingPayload) {
+
   },
   displayConfirmation ({ commit }, payload: DisplayConfirmationPayload) {
     commit('SET_CONFIRM_DATA', payload)

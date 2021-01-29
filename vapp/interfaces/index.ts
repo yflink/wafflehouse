@@ -28,8 +28,9 @@ export interface ProjectConfig {
   HARMONY_URL: string;
   HARMONY_WS_URL: string;
   HARMONY_EXPLORER_URL: string;
-  HARMONY_WONE_ADDRESS: string;
   HARMONY_CHAIN_ID: ChainID;
+  HARMONY_CURRENCY_ADDRESS: string;
+  CURRENCY_NAME: string;
 
   ETHEREUM_URL: string;
   ETHEREUM_WS_URL: string;

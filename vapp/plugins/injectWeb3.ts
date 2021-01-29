@@ -33,11 +33,6 @@ const plugin: Plugin = (_, inject: Inject) => {
     chainId: process.env.HARMONY_CHAIN_ID
   })
   inject('hmy', hmy)
-
-  /* if ($web3Modal.cachedProvider) {
-    const ethWeb3 = new Web3(process.env.ETHEREUM_URL)
-    inject('ethWeb3', ethWeb3)
-  } */
 }
 
 export default plugin
