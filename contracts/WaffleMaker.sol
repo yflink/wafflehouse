@@ -14,16 +14,16 @@ contract WaffleMaker {
     uint constant MAX_VOTES_PER_ACCOUNT = 3;
     uint constant LEADERBOARD_WAFFLE_COUNT = 10;
     uint constant COMPETITION_DURATION = 60 * 60 * 24 * 30;
-    uint constant BAKE_DURATION = 60 * 60 * 24;
-    uint constant CUSTOMIZE_DURATION = 60 * 60 * 24;
+    uint constant BAKE_DURATION = 10;//60 * 60 * 24;
+    uint constant CUSTOMIZE_DURATION = 120;//60 * 60 * 24;
     uint constant CUSTOMIZATION_STEPS_COUNT = 6;
-    uint constant CUSTOMIZATION_STEP_WINDOW_DURATION = 60 * 60;
+    uint constant CUSTOMIZATION_STEP_WINDOW_DURATION = 30;//60 * 60;
     uint[CUSTOMIZATION_STEPS_COUNT] CUSTOMIZATION_STEP_WINDOWS = [
-        0,
-        60 * 60,
-        60 * 60 * 9,
-        60 * 60 * 17,
-        60 * 60 * 24,
+        0,//0,
+        30,//60 * 60,
+        60,//60 * 60 * 9,
+        90,//60 * 60 * 17,
+        120,//60 * 60 * 24,
         0
     ];
     uint CREATE_WAFFLE_CURRENCY_COST = 5000000000000000;
@@ -140,22 +140,39 @@ contract WaffleMaker {
         extras.push(WaffleItem('Empty', 0));
     }
 
+    /**
+    *   Add a new topping that can be used by waffles
+    **/
     function createTopping (string memory _name, uint _oneCost) external isOwner {
         toppings.push(WaffleItem(_name, _oneCost));
     }
 
+    /**
+    *   Add a new base that can be used by waffles
+    **/
     function createBase (string memory _name, uint _oneCost) external isOwner {
         bases.push(WaffleItem(_name, _oneCost));
     }
 
+    /**
+    *   Add a new extra that can be used by waffles
+    **/
     function createExtra (string memory _name, uint _oneCost) external isOwner {
         extras.push(WaffleItem(_name, _oneCost));
     }
 
+    /**
+    *   Add a new plate that can be used by waffles
+    **/
     function createPlate (string memory _name, uint _oneCost) external isOwner {
         plates.push(WaffleItem(_name, _oneCost));
     }
 
+    /**
+    *   Bake a new waffle with a BAKE_DURATION time to completion
+    *
+    *   Costs CREATE_WAFFLE_CURRENCY_COST of the contract currency
+    **/
     function createWaffle() external competitionIsOngoing {
         waffles.push(Waffle({
             owner: msg.sender,
