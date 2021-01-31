@@ -33,7 +33,7 @@
                 </v-btn>
               </v-row>
               <v-row class="waffle-text-border-black waffle-price vh-center">
-                $3.50
+                ${{ waffle.price }}
               </v-row>
               <v-row>
                 <v-card width="100%" min-height="250" class="vh-center" color="transparent" flat>

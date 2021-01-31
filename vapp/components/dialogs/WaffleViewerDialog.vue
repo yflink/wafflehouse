@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { MAX_VOTES_PER_ACCOUNT } from '../../constants'
 import Waffle from '~/database/Waffle'
 import WaffleDisplay from '~/components/WaffleDisplay'
@@ -101,6 +101,8 @@ export default {
     this.checkWaffleLoaded()
   },
   methods: {
+    ...mapActions('dialogs', ['closeDialogs']),
+
     checkWaffleLoaded () {
       if (!this.viewedWaffle) {
         this.onClose()
@@ -131,7 +133,7 @@ export default {
   }
 
   .dialog-container {
-    background: url(~static/background.png) repeat;
+    background: url(../../static/background.png) repeat;
     border-radius: 5px;
     overflow: hidden;
     animation: ScrollBackground 10s linear infinite;

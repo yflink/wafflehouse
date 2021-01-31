@@ -17,6 +17,10 @@ interface DisplayConfirmationPayload{
   negativeAction?: any;
   negativeLabel?: string;
 }
+interface DisplayFundPayload{
+  affirmativeAction?: any;
+  affirmativeLabel?: string;
+}
 interface SetErrorDataPayload {
   title?: string;
   body: string;
@@ -29,8 +33,11 @@ const actions: ActionTree<DialogsState, RootState> = {
   displayProcess ({ commit }, payload: DisplayProcessPayload) {
     commit('SET_PROCESS_DATA', payload)
   },
-  displaySpending ({ commit }, payload: DisplaySpendingPayload) {
-
+  displayFundOne ({ commit }, payload: DisplayFundPayload) {
+    commit('SET_FUND_ONE_DATA', payload)
+  },
+  displayFundCurrency ({ commit }, payload: DisplayFundPayload) {
+    commit('SET_FUND_CURRENCY_DATA', payload)
   },
   displayConfirmation ({ commit }, payload: DisplayConfirmationPayload) {
     commit('SET_CONFIRM_DATA', payload)

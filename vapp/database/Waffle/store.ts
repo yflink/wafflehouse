@@ -1,8 +1,19 @@
+import BigNumber from 'bignumber.js'
 import Waffle from '~/database/Waffle'
 import WaffleLayer from '~/database/WaffleLayer'
 import { bnToNumber } from '~/utils/abi'
-import { CustomizationStep } from '~/enums'
-import { LEADERBOARD_WAFFLE_COUNT, MAX_VOTES_PER_ACCOUNT, MAX_WAFFLE_LAYERS } from '~/constants'
+import { CustomizationStep, Ticker } from '~/enums'
+import {
+  CREATE_WAFFLE_CURRENCY_COST,
+  LEADERBOARD_WAFFLE_COUNT,
+  MAX_VOTES_PER_ACCOUNT,
+  MAX_WAFFLE_LAYERS
+} from '~/constants'
+import Token from '~/database/Token'
+import baseList from '~/lists/waffle-bases'
+import toppingList from '~/lists/waffle-toppings'
+import plateList from '~/lists/waffle-plates'
+import extraList from '~/lists/waffle-extras'
 
 const loadHiddenWaffleIds = (): number[] => {
   const favorites = JSON.parse(localStorage.getItem('hiddenWaffleIds'))
@@ -127,7 +138,7 @@ export default {
       await dispatch('loadWaffles', ownedWaffleIds)
     },
 
-    createWaffle ({ dispatch }: any) {
+    createWaffle ({ dispatch }) {
       const router = this.$router
       const transaction = this.$hmyContracts.WaffleMaker.methods.createWaffle()
       dispatch('dispatchTransaction', {
@@ -135,6 +146,27 @@ export default {
         transaction,
         successCallback () {
           router.push('/my-waffles')
+        }
+      }, { root: true })
+    },
+    createWaffleFlow ({ dispatch, rootGetters }) {
+      const currencyToken = Token.query().find(Ticker.CURRENCY)
+      dispatch('spendCurrency', {
+        amount: CREATE_WAFFLE_CURRENCY_COST,
+        action () {
+          const ownedWaffleIds = rootGetters['accounts/getOwnedWaffleIds']
+          if (ownedWaffleIds.length === 0) {
+            dispatch('dialogs/displayConfirmation', {
+              title: 'Create new waffle?',
+              body: `This will begin a 24 hour period baking period and will cost you ${currencyToken.formatAmount(CREATE_WAFFLE_CURRENCY_COST, 1, true)}`,
+              affirmativeAction: () => {
+                dispatch('createWaffle')
+              },
+              affirmativeLabel: 'Create Waffle'
+            }, { root: true })
+          } else {
+            dispatch('createWaffle')
+          }
         }
       }, { root: true })
     },
@@ -147,6 +179,19 @@ export default {
         transaction,
         successCallback () {
           router.push('/my-waffles')
+        }
+      }, { root: true })
+    },
+    submitWaffleCustomizationFlow ({ dispatch }: any, payload) {
+      const base = baseList[payload.baseId]
+      const topping = toppingList[payload.toppingId]
+      const extra = extraList[payload.extraId]
+      const plate = plateList[payload.plateId]
+      const oneCost = new BigNumber(base.oneCost).plus(topping.oneCost).plus(extra.oneCost).plus(plate.oneCost).toString(10)
+      dispatch('spendONE', {
+        amount: oneCost,
+        action () {
+          dispatch('submitWaffleCustomization', payload)
         }
       }, { root: true })
     },

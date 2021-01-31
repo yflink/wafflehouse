@@ -1,13 +1,17 @@
 import { Model } from '@vuex-orm/core'
 
+import BigNumber from 'bignumber.js'
 import WaffleLayer from '~/database/WaffleLayer'
 import {
+  CREATE_WAFFLE_CURRENCY_COST,
   CUSTOMIZATION_STEP_WINDOW_DURATION,
   CUSTOMIZATION_STEP_WINDOWS,
-  CUSTOMIZE_DURATION,
-  MAX_WAFFLE_LAYERS
+  CUSTOMIZE_DURATION
 } from '~/constants'
-import { CustomizationStep, WaffleStatus } from '~/enums'
+import { CustomizationStep, Ticker, WaffleStatus } from '~/enums'
+import plateList from '~/lists/waffle-plates'
+import extraList from '~/lists/waffle-extras'
+import Token from '~/database/Token'
 
 export default class Waffle extends Model {
   static entity = 'waffles'
@@ -45,11 +49,27 @@ export default class Waffle extends Model {
   }
 
   get price () {
-    return '0.00'
+    const oneToken = Token.query().find(Ticker.ONE)
+    const currencyToken = Token.query().find(Ticker.CURRENCY)
+
+    let oneCost = new BigNumber(this.extra.oneCost).plus(this.plate.oneCost)
+    this.layers.forEach((layer) => {
+      oneCost = oneCost.plus(layer.topping.oneCost).plus(layer.base.oneCost)
+    })
+    const oneCostValue = oneToken.priceOf(oneCost)
+
+    const currencyCost = new BigNumber(CREATE_WAFFLE_CURRENCY_COST).multipliedBy(this.layers.length)
+    const currencyCostValue = currencyToken.priceOf(currencyCost)
+
+    return new BigNumber(oneCostValue).plus(currencyCostValue).toFormat(2)
   }
 
-  get maxLayersReached () {
-    return this.layers.length === MAX_WAFFLE_LAYERS
+  get extra () {
+    return extraList[this.extraId]
+  }
+
+  get plate () {
+    return plateList[this.plateId]
   }
 
   get customizationWindowEnd () {

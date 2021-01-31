@@ -14,6 +14,10 @@ interface SetConfirmDataPayload {
   negativeAction?: any;
   negativeLabel?: string;
 }
+interface SetFundDataPayload {
+  affirmativeAction?: any;
+  affirmativeLabel?: string;
+}
 interface SetErrorDataPayload {
   title?: string;
   body: string;
@@ -27,14 +31,15 @@ const mutations: MutationTree<DialogsState> = {
     state.title = title
     state.dialogType = DialogType.Process
   },
-  SET_SPENDING_DATA (state, { title, body, affirmativeAction, affirmativeLabel, negativeAction, negativeLabel }: SetConfirmDataPayload) {
-    state.title = title || 'Are you sure?'
-    state.body = body || ''
-    state.affirmativeAction = affirmativeAction
-    state.affirmativeLabel = affirmativeLabel || 'Understood'
-    state.negativeAction = negativeAction || function () {}
-    state.negativeLabel = negativeLabel || 'Nevermind'
-    state.dialogType = DialogType.Confirm
+  SET_FUND_ONE_DATA (state, { affirmativeAction, affirmativeLabel }: SetFundDataPayload) {
+    state.affirmativeAction = affirmativeAction || function () {}
+    state.affirmativeLabel = affirmativeLabel || 'Got it!'
+    state.dialogType = DialogType.FundOne
+  },
+  SET_FUND_CURRENCY_DATA (state, { affirmativeAction, affirmativeLabel }: SetFundDataPayload) {
+    state.affirmativeAction = affirmativeAction || function () {}
+    state.affirmativeLabel = affirmativeLabel || 'Got it!'
+    state.dialogType = DialogType.FundCurrency
   },
   SET_CONFIRM_DATA (state, { title, body, affirmativeAction, affirmativeLabel, negativeAction, negativeLabel }: SetConfirmDataPayload) {
     state.title = title || 'Are you sure?'

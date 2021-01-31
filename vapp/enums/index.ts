@@ -15,7 +15,8 @@ export enum DialogType {
   Closed,
   Process,
   Confirm,
-  Spending,
+  FundOne,
+  FundCurrency,
   Error
 }
 

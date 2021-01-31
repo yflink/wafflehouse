@@ -19,13 +19,13 @@
           Current Funds
         </v-row>
         <v-row class="vh-center">
-          0.5 YFL
+          {{ currencyToken.formatAmount(currencyToken.balance, 4, true) }}
         </v-row>
         <v-row class="vh-center">
-          2000 ONE
+          {{ oneToken.formatAmount(oneToken.balance, 4, true) }}
         </v-row>
         <v-row class="vh-center">
-          ($315.12)
+          (${{ balanceValue }})
         </v-row>
         <v-row class="vh-center mt-10">
           <v-btn width="100%" max-width="250" outlined tile>
@@ -73,6 +73,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import BigNumber from 'bignumber.js'
+import { Ticker } from '../enums'
+import Token from '~/database/Token'
 import Waffle from '~/database/Waffle'
 import InventoryWaffle from '~/components/InventoryWaffle'
 import Tip from '~/components/layout/Tip'
@@ -99,6 +102,17 @@ export default {
       return waffles.filter((waffle) => {
         return !waffle.hidden
       })
+    },
+    oneToken () {
+      return Token.query().find(Ticker.ONE)
+    },
+    currencyToken () {
+      return Token.query().find(Ticker.CURRENCY)
+    },
+    balanceValue () {
+      const oneBalanceValue = this.oneToken.priceOf(this.oneToken.balance)
+      const currencyBalanceValue = this.currencyToken.priceOf(this.currencyToken.balance)
+      return new BigNumber(oneBalanceValue).plus(currencyBalanceValue).toFormat(2)
     }
   },
   async mounted () {

@@ -1,6 +1,9 @@
 import { GetterTree } from 'vuex'
+import BigNumber from 'bignumber.js'
 import { CompetitionState } from '~/store/competition/state'
 import { RootState } from '~/store/state'
+import Token from '~/database/Token'
+import { Ticker } from '~/enums'
 
 const getters: GetterTree<CompetitionState, RootState> = {
   getOnePrize ({ onePrize }) {
@@ -9,6 +12,12 @@ const getters: GetterTree<CompetitionState, RootState> = {
 
   getCurrencyPrize ({ currencyPrize }) {
     return currencyPrize
+  },
+
+  getPrizeValue ({ onePrize, currencyPrize }) {
+    const oneToken = Token.query().find(Ticker.ONE)
+    const currencyToken = Token.query().find(Ticker.CURRENCY)
+    return new BigNumber(oneToken.priceOf(onePrize)).plus(currencyToken.priceOf(currencyPrize)).toFixed(2)
   },
 
   getCompetitionEndTimestamp ({ competitionEndTimestamp }) {

@@ -94,6 +94,6 @@ export default {
 }
 
 .content-wrapper {
-  max-width: 500px;
+  max-width: 600px;
 }
 </style>

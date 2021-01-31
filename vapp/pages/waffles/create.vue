@@ -43,7 +43,7 @@
               </h2>
             </v-btn>
             <h4 class="mt-2">
-              Cost: 0.0005 YFL
+              Cost: {{ currencyToken.formatAmount(CREATE_WAFFLE_CURRENCY_COST, 1, true) }}
             </h4>
           </v-row>
         </v-col>
@@ -56,8 +56,10 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
+import { Ticker } from '~/enums'
+import { CREATE_WAFFLE_CURRENCY_COST } from '~/constants'
 import Waffle from '~/database/Waffle'
+import Token from '~/database/Token'
 import Tip from '~/components/layout/Tip.vue'
 
 export default {
@@ -65,26 +67,20 @@ export default {
   components: {
     Tip
   },
+  data () {
+    return {
+      CREATE_WAFFLE_CURRENCY_COST
+    }
+  },
   middleware: 'forceHmyWalletConnected',
   computed: {
-    ...mapGetters('accounts', {
-      ownedWaffleIds: 'getOwnedWaffleIds'
-    })
+    currencyToken () {
+      return Token.query().find(Ticker.CURRENCY)
+    }
   },
   methods: {
     createWaffle () {
-      if (this.ownedWaffleIds.length === 0) {
-        this.$store.dispatch('dialogs/displayConfirmation', {
-          title: 'Create new waffle?',
-          body: 'This will begin a 24 hour period baking period and will cost you 0.05 YFL',
-          affirmativeAction: () => {
-            Waffle.dispatch('createWaffle')
-          },
-          affirmativeLabel: 'Create Waffle'
-        })
-      } else {
-        Waffle.dispatch('createWaffle')
-      }
+      Waffle.dispatch('createWaffleFlow')
     }
   }
 }

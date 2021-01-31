@@ -6,13 +6,15 @@
           BREAKING NEWS
         </v-col>
         <v-col v-if="ready" cols="12" md="10" class="news-background vh-center">
-          <vue-marquee direction="left" :show-progress="false" :duration="duration" style="width:100vw; height:25px;">
-            <vue-marquee-slide v-for="(ticker, index) in newsTickers" :key="index" class="news-label">
-              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-              *
-              {{ ticker }}
-              *
-              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          <vue-marquee direction="left" :duration="duration" :show-progress="false" style="width:100vw; height:25px;">
+            <vue-marquee-slide v-for="(ticker, index) in newsTickers" :key="index" class="news-label text-center" style="min-width: 110vw">
+              <span>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                *
+                {{ ticker }}
+                *
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+              </span>
             </vue-marquee-slide>
           </vue-marquee>
         </v-col>
@@ -34,7 +36,7 @@ export default {
   data () {
     return {
       ready: false,
-      newsTickers
+      newsTickers: []
     }
   },
   computed: {
@@ -43,10 +45,16 @@ export default {
     }
   },
   mounted () {
+    this.copyTickers()
     this.shuffleTickers()
     this.ready = true
   },
   methods: {
+    copyTickers () {
+      newsTickers.forEach((ticker) => {
+        this.newsTickers.push(ticker)
+      })
+    },
     shuffleTickers () {
       for (let i = this.newsTickers.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))

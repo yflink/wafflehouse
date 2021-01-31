@@ -22,61 +22,33 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Changed ingredient migration so that it looks for updates in the ingredients list and adds them, added NFTs visual to rules page, started implementation of fund management logic in the frontend, added a scoreboard to the smart contract, made it so that we spend $ONE instead of $WONE for ingredients.">
-      <change afterPath="$PROJECT_DIR$/lists/waffle-bases.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lists/waffle-extras.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lists/waffle-plates.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lists/waffle-toppings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/2_deploy_wafflemaker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/3_inject_ingredients.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/components/dialogs/FundDialog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/pages/admin.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/plugins/injectTokens.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/static/nft/bonk_nft.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/static/nft/memez_nft.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/static/tutorials/linkswap-yfl.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.envSample" beforeDir="false" afterPath="$PROJECT_DIR$/.envSample" afterDir="false" />
+    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Finalized spending flow, implemented pricing, implemented token data loading, fixed news ticker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/WaffleMaker.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/WaffleMaker.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/WrappedOne.sol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/YFLink.sol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lists/waffle-bases.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lists/waffle-extras.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lists/waffle-plates.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lists/waffle-toppings.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2_deploy_tokens.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/3_deploy_wafflemaker.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/networks/2.json" beforeDir="false" afterPath="$PROJECT_DIR$/networks/2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/5777.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/truffle-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/truffle-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/.envSample" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/.envSample" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/components/WaffleDisplay.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/WaffleDisplay.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/Toolbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/ConfirmDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/ConfirmDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/FundDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/FundDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/SpendingDialog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/WaffleViewerDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/WaffleViewerDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarNews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarNews.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/config/mainnet.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/config/mainnet.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/config/testnet.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/config/testnet.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/constants/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/database/Token/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Token/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/database/Token/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Token/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/database/Waffle/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Waffle/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/database/Waffle/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Waffle/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/database/WaffleLayer/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/WaffleLayer/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/enums/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/enums/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/interfaces/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/interfaces/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/lists/news-tickers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/news-tickers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/lists/tokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/tokens.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/lists/waffle-bases.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/waffle-bases.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/lists/waffle-extras.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/waffle-extras.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/lists/waffle-plates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/waffle-plates.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/lists/waffle-toppings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/waffle-toppings.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/nuxt.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/pages/rules.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/rules.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/my-waffles.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/my-waffles.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/vote.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/vote.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/waffles/_id/customize.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/waffles/_id/customize.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/waffles/create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/waffles/create.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/plugins/injectContracts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/plugins/injectContracts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/plugins/injectWeb3.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/plugins/injectWeb3.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/plugins/injectWeb3Modal.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/plugins/injectTokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/plugins/injectTokens.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/store/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/store/competition/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/competition/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/store/competition/getters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/competition/getters.ts" afterDir="false" />
@@ -84,6 +56,7 @@
       <change beforePath="$PROJECT_DIR$/vapp/store/competition/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/competition/state.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/store/dialogs/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/dialogs/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/store/dialogs/mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/dialogs/mutations.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/utils/abi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/utils/abi.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +209,8 @@
       <workItem from="1610481741448" duration="12110000" />
       <workItem from="1610630821760" duration="88837000" />
       <workItem from="1611572810383" duration="21434000" />
-      <workItem from="1611847523734" duration="8378000" />
+      <workItem from="1611847523734" duration="51552000" />
+      <workItem from="1612092623224" duration="13514000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented waffle display">
       <created>1602652763796</created>
@@ -378,7 +352,28 @@
       <option name="project" value="LOCAL" />
       <updated>1610740085323</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Changed ingredient migration so that it looks for updates in the ingredients list and adds them, added NFTs visual to rules page, started implementation of fund management logic in the frontend, added a scoreboard to the smart contract, made it so that we spend $ONE instead of $WONE for ingredients.">
+      <created>1611900160946</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1611900160946</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Uncommented constants in WaffleMaker">
+      <created>1611970880237</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1611970880237</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added a few comments to contract">
+      <created>1611971332661</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1611971332662</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,7 +413,10 @@
     <MESSAGE value="Added new extra images" />
     <MESSAGE value="Added topping list to the WaffleMaker deploy contract" />
     <MESSAGE value="Changed ingredient migration so that it looks for updates in the ingredients list and adds them, added NFTs visual to rules page, started implementation of fund management logic in the frontend, added a scoreboard to the smart contract, made it so that we spend $ONE instead of $WONE for ingredients." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed ingredient migration so that it looks for updates in the ingredients list and adds them, added NFTs visual to rules page, started implementation of fund management logic in the frontend, added a scoreboard to the smart contract, made it so that we spend $ONE instead of $WONE for ingredients." />
+    <MESSAGE value="Uncommented constants in WaffleMaker" />
+    <MESSAGE value="Added a few comments to contract" />
+    <MESSAGE value="Finalized spending flow, implemented pricing, implemented token data loading, fixed news ticker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalized spending flow, implemented pricing, implemented token data loading, fixed news ticker" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

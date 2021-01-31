@@ -3,8 +3,8 @@ import { CompetitionState } from '~/store/competition/state'
 
 // ************ PAYLOADS *************
 interface SetCompetitionDataPayload {
-  onePrize: number;
-  currencyPrize: number;
+  onePrize: string;
+  currencyPrize: string;
   competitionEndTimestamp: number;
   publishedWafflesCount: number;
 }

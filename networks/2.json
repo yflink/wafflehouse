@@ -1,16 +1,6 @@
 [
   {
     "contractName": "WaffleMaker",
-    "address": "0xA0b66553f1edB7FCfdAA9A7d7A493668321154c0",
-    "transactionHash": "0x143b6d6567539514c1a25822ad6de58fd89ea254f6450be5fc4810e2174cbe0b"
-  },
-  {
-    "contractName": "WaffleMaker",
-    "address": "0x1aF1014f6E55E3Ff73a6fB6f5Db453AE52F81Ddb",
-    "transactionHash": "0x717b042ab3fce05011e156db8f196569b1a4f96270073bbd9f5f424c5ba15b78"
-  },
-  {
-    "contractName": "WaffleMaker",
     "address": "0x1aF1014f6E55E3Ff73a6fB6f5Db453AE52F81Ddb",
     "transactionHash": "0xce0e40e484bab90950b5c7517a63054d1d3929a1758179f5873ca4b16b37ea52"
   }

@@ -41,9 +41,9 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~/plugins/injectTokens',
     '~/plugins/injectWeb3',
     '~/plugins/injectContracts',
+    '~/plugins/injectTokens',
     '~/plugins/setupRefreshes'
   ],
   /*

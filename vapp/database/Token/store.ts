@@ -17,12 +17,14 @@ export default {
     },
 
     async loadTokensData () {
+      const waffleMakerAddress = this.$hmy.crypto.toBech32(this.$hmyContracts.WaffleMaker.address)
       const account = await hmyWallet.getAccount()
       await Promise.all(Object.keys(tokenList).map(async (ticker) => {
+        const tokenData = tokenList[ticker]
         const results = await Promise.all([
-          this.$axios.get('https://api.coingecko.com/api/v3/simple/price?ids=yflink&vs_currencies=usd'),
-          this.$hmyContracts.Currency.methods.balanceOf(account).call(),
-          this.$hmyContracts.Currency.methods.allowance(account).call()
+          tokenData.getPrice(this),
+          tokenData.getBalance(this, account.address),
+          tokenData.getAllowance(this, account.address, waffleMakerAddress)
         ])
 
         await Token.update({

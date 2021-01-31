@@ -55,10 +55,10 @@
             </v-btn>
           </v-row>
           <v-row class="vh-center">
-            Cost: 50 WONE
+            Cost: {{ oneToken.formatAmount(oneCost, 1, true) }}
           </v-row>
           <v-row class="vh-center">
-            Value: $0.25
+            Value: ${{ oneCostValue }}
           </v-row>
         </v-col>
       </v-row>
@@ -68,6 +68,7 @@
 </template>
 
 <script lang="ts">
+import BigNumber from 'bignumber.js'
 import Waffle from '~/database/Waffle'
 import WaffleDisplay from '~/components/WaffleDisplay.vue'
 import Tip from '~/components/layout/Tip.vue'
@@ -77,6 +78,8 @@ import plateList from '~/lists/waffle-plates'
 import extraList from '~/lists/waffle-extras'
 import SelectField from '~/components/inputs/SelectField.vue'
 import { MAX_NAME_LENGTH, MAX_DESCRIPTION_LENGTH } from '~/constants'
+import Token from '~/database/Token'
+import { Ticker } from '~/enums'
 
 export default {
   name: 'Customize',
@@ -112,6 +115,16 @@ export default {
         newWaffle.plateId = this.plateId
       }
       return newWaffle
+    },
+
+    oneToken () {
+      return Token.query().find(Ticker.ONE)
+    },
+    oneCost () {
+      return new BigNumber(this.base.oneCost).plus(this.topping.oneCost).plus(this.extra.oneCost).plus(this.plate.oneCost).toString(10)
+    },
+    oneCostValue () {
+      return this.oneToken.priceOf(this.oneCost)
     },
 
     base () {
@@ -168,7 +181,7 @@ export default {
   },
   methods: {
     submitWaffleCustomization () {
-      Waffle.dispatch('submitWaffleCustomization', {
+      Waffle.dispatch('submitWaffleCustomizationFlow', {
         waffleId: this.viewedWaffleId,
         name: this.name,
         description: this.description,

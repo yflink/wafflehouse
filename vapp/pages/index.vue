@@ -52,7 +52,7 @@
                   </v-row>
                   <v-row class="vh-center">
                     <h2>
-                      Price: $4.12
+                      Price: ${{ waffle.price }}
                     </h2>
                   </v-row>
                   <v-row class="mx-2">
@@ -166,7 +166,7 @@
                 <br><br>
                 Once you send your YFL and it is confirmed, you will be taken to the waffle cooking page, where you will see a 24 hour countdown. Within that countdown there will be specific periods where you must send more ingredients (ONE/YFL tokens) to a specified address.
                 <br><br>
-                80% of all tokens sent for waffle creation are added to the grand prize. 10% are sent to the dev wallet, and the final 10% are sent to a holding wallet. This 10% goes back to the user once their waffle/layer is successfully completed, acting as a discount.
+                90% of all tokens sent for waffle creation are added to the grand prize. 10% are sent to the dev wallet.
                 <br><br>
                 After 24 hours your waffle will be complete. Afterwards you can customize, add additional layers, and so on.
                 <br><br>
@@ -244,6 +244,7 @@ export default {
     ...mapGetters('competition', {
       onePrize: 'getOnePrize',
       currencyPrize: 'getCurrencyPrize',
+      prizeValue: 'getPrizeValue',
       competitionEndTimestamp: 'getCompetitionEndTimestamp',
       publishedWafflesCount: 'getPublishedWafflesCount'
     }),
