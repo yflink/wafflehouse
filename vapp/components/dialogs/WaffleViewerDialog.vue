@@ -36,7 +36,7 @@
               {{ viewedWaffle.description }}
             </v-row>
             <v-row class="mb-5">
-              $13.50
+              ${{ viewedWaffle.price }}
             </v-row>
             <v-row class="mb-2">
               <v-btn width="100%" color="primary" @click="voteWaffle">
