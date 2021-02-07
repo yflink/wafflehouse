@@ -19,10 +19,10 @@
           Current Funds
         </v-row>
         <v-row class="vh-center">
-          {{ currencyToken.formatAmount(currencyToken.balance, 4, true) }}
+          {{ currencyToken.formatAmountPrecision(currencyToken.balance, 4, true) }}
         </v-row>
         <v-row class="vh-center">
-          {{ oneToken.formatAmount(oneToken.balance, 4, true) }}
+          {{ oneToken.formatAmountDecimals(oneToken.balance, 2, true) }}
         </v-row>
         <v-row class="vh-center">
           (${{ balanceValue }})

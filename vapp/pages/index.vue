@@ -11,10 +11,10 @@
               ${{ prizeValue }}
             </v-row>
             <v-row class="waffle-text vh-center">
-              +{{ onePrize }} ONE
+              +{{ oneToken.formatAmountDecimals(onePrize, 1, true) }}
             </v-row>
             <v-row class="waffle-text vh-center">
-              +{{ currencyPrize }} YFL
+              +{{ currencyToken.formatAmountPrecision(currencyPrize, 3, true) }}
             </v-row>
           </v-col>
         </v-img>
@@ -221,6 +221,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { Ticker } from '~/enums'
+import Token from '~/database/Token'
 import Waffle from '~/database/Waffle'
 import CountdownTimer from '~/components/helper/CountdownTimer'
 
@@ -251,6 +253,12 @@ export default {
 
     displayedWaffles () {
       return Waffle.getters('getWafflesbyIds')(this.displayedWaffleIds)
+    },
+    oneToken () {
+      return Token.query().find(Ticker.ONE)
+    },
+    currencyToken () {
+      return Token.query().find(Ticker.CURRENCY)
     }
   },
   async mounted () {

@@ -1,4 +1,5 @@
 import { ActionTree } from 'vuex'
+import { Unit } from '@harmony-js/utils'
 import { RootState } from '~/store/state'
 import Token from '~/database/Token'
 import { Ticker } from '~/enums'
@@ -10,34 +11,59 @@ const actions: ActionTree<RootState, RootState> = {
     commit('REFRESH_NOW')
   },
 
-  async dispatchTransaction ({ dispatch }, { title, transaction, successCallback }) {
+  async dispatchTransaction ({ dispatch }, { title, transaction, successCallback, oneCost, currencyCost }) {
     const account = await hmyWallet.getAccount()
     const address = this.$hmy.crypto.fromBech32(account.address)
-    await dispatch('spendONE', {
-      amount: '1',
-      async action () {
-        try {
-          dispatch('dialogs/displayProcess', { title })
-          await transaction.send({
-            from: address,
-            gasPrice: 10000000000000,
-            gasLimit: 210000
-          })
-          if (successCallback) {
-            await successCallback()
+
+    const weiOneCost = oneCost ? new Unit(oneCost).asWei().toWei() : undefined
+    const action = async () => {
+      await dispatch('spendOne', {
+        amount: '1',
+        async action () {
+          try {
+            dispatch('dialogs/displayProcess', { title })
+            const response = await transaction.send({
+              from: address,
+              value: weiOneCost,
+              gasPrice: 1000000000,
+              gasLimit: 210000
+            })
+
+            if (response.status === 'rejected') {
+              dispatch('dialogs/displayError', {
+                body: 'Error: Transaction Failed'
+              })
+            } else {
+              dispatch('dialogs/closeDialogs')
+              if (successCallback) {
+                successCallback()
+              }
+            }
+          } catch (e) {
+            dispatch('dialogs/displayError', {
+              body: `Error: ${e}`
+            })
           }
-          dispatch('dialogs/closeDialogs')
-        } catch (e) {
-          console.log(e)
-          dispatch('dialogs/displayError', {
-            body: 'Transaction has failed or has been cancelled'
-          })
         }
-      }
-    })
+      })
+    }
+
+    if (oneCost) {
+      await dispatch('spendOne', {
+        amount: oneCost,
+        action
+      })
+    } else if (currencyCost) {
+      await dispatch('spendCurrency', {
+        amount: currencyCost,
+        action
+      })
+    } else {
+      await action()
+    }
   },
 
-  async spendONE ({ dispatch }, { amount, action }) {
+  async spendOne ({ dispatch }, { amount, action }) {
     await Token.dispatch('loadTokensData')
 
     const oneToken = Token.query().find(Ticker.ONE)

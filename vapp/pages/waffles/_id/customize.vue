@@ -55,7 +55,7 @@
             </v-btn>
           </v-row>
           <v-row class="vh-center">
-            Cost: {{ oneToken.formatAmount(oneCost, 1, true) }}
+            Cost: {{ oneToken.formatAmountDecimals(oneCost, 0, true) }}
           </v-row>
           <v-row class="vh-center">
             Value: ${{ oneCostValue }}
@@ -173,15 +173,17 @@ export default {
   },
   async mounted () {
     if (this.viewedWaffleId != null) {
+      this.$nuxt.$loading.start()
       await Waffle.dispatch('loadWaffles', [this.viewedWaffleId])
       this.viewedWaffle = Waffle.getters('getWafflebyId')(this.viewedWaffleId)
 
       this.loading = false
+      this.$nuxt.$loading.finish()
     }
   },
   methods: {
     submitWaffleCustomization () {
-      Waffle.dispatch('submitWaffleCustomizationFlow', {
+      Waffle.dispatch('submitWaffleCustomization', {
         waffleId: this.viewedWaffleId,
         name: this.name,
         description: this.description,

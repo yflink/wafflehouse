@@ -43,7 +43,7 @@
               </h2>
             </v-btn>
             <h4 class="mt-2">
-              Cost: {{ currencyToken.formatAmount(CREATE_WAFFLE_CURRENCY_COST, 1, true) }}
+              Cost: {{ currencyToken.formatAmountPrecision(CREATE_WAFFLE_CURRENCY_COST, 1, true) }}
             </h4>
           </v-row>
         </v-col>

@@ -30,11 +30,16 @@ export default class Token extends Model {
   }
 
   priceOf (amount: Value): string {
-    return new BigNumber(amount).multipliedBy(this.price).toFixed(2)
+    return new BigNumber(amount).shiftedBy(-this.decimals).multipliedBy(this.price).toFixed(2)
   }
 
-  formatAmount (amount: Value, significantDigits: number, showTicker: boolean): string {
+  formatAmountPrecision (amount: Value, significantDigits: number, showTicker: boolean): string {
     const formattedAmount = new BigNumber(amount).shiftedBy(-this.decimals).toPrecision(significantDigits)
+    return showTicker ? `${formattedAmount} ${this.name}` : formattedAmount
+  }
+
+  formatAmountDecimals (amount: Value, decimals: number, showTicker: boolean): string {
+    const formattedAmount = new BigNumber(amount).shiftedBy(-this.decimals).toFormat(decimals)
     return showTicker ? `${formattedAmount} ${this.name}` : formattedAmount
   }
 

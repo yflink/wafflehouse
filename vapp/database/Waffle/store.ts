@@ -144,6 +144,7 @@ export default {
       dispatch('dispatchTransaction', {
         title: 'Creating Waffle',
         transaction,
+        currencyCost: CREATE_WAFFLE_CURRENCY_COST,
         successCallback () {
           router.push('/my-waffles')
         }
@@ -151,47 +152,36 @@ export default {
     },
     createWaffleFlow ({ dispatch, rootGetters }) {
       const currencyToken = Token.query().find(Ticker.CURRENCY)
-      dispatch('spendCurrency', {
-        amount: CREATE_WAFFLE_CURRENCY_COST,
-        action () {
-          const ownedWaffleIds = rootGetters['accounts/getOwnedWaffleIds']
-          if (ownedWaffleIds.length === 0) {
-            dispatch('dialogs/displayConfirmation', {
-              title: 'Create new waffle?',
-              body: `This will begin a 24 hour period baking period and will cost you ${currencyToken.formatAmount(CREATE_WAFFLE_CURRENCY_COST, 1, true)}`,
-              affirmativeAction: () => {
-                dispatch('createWaffle')
-              },
-              affirmativeLabel: 'Create Waffle'
-            }, { root: true })
-          } else {
+      const ownedWaffleIds = rootGetters['accounts/getOwnedWaffleIds']
+      if (ownedWaffleIds.length === 0) {
+        dispatch('dialogs/displayConfirmation', {
+          title: 'Create new waffle?',
+          body: `This will begin a 24 hour period baking period and will cost you ${currencyToken.formatAmountPrecision(CREATE_WAFFLE_CURRENCY_COST, 1, true)}`,
+          affirmativeAction: () => {
             dispatch('createWaffle')
-          }
-        }
-      }, { root: true })
+          },
+          affirmativeLabel: 'Create Waffle'
+        }, { root: true })
+      } else {
+        dispatch('createWaffle')
+      }
     },
 
     submitWaffleCustomization ({ dispatch }: any, { waffleId, name, description, baseId, toppingId, extraId, plateId }) {
+      const base = baseList[baseId]
+      const topping = toppingList[toppingId]
+      const extra = extraList[extraId]
+      const plate = plateList[plateId]
+      const oneCost = new BigNumber(base.oneCost).plus(topping.oneCost).plus(extra.oneCost).plus(plate.oneCost).toString(10)
+
       const router = this.$router
       const transaction = this.$hmyContracts.WaffleMaker.methods.submitWaffleCustomization(waffleId, name, description, baseId, toppingId, extraId, plateId)
       dispatch('dispatchTransaction', {
         title: 'Customizing Waffle',
         transaction,
+        oneCost,
         successCallback () {
           router.push('/my-waffles')
-        }
-      }, { root: true })
-    },
-    submitWaffleCustomizationFlow ({ dispatch }: any, payload) {
-      const base = baseList[payload.baseId]
-      const topping = toppingList[payload.toppingId]
-      const extra = extraList[payload.extraId]
-      const plate = plateList[payload.plateId]
-      const oneCost = new BigNumber(base.oneCost).plus(topping.oneCost).plus(extra.oneCost).plus(plate.oneCost).toString(10)
-      dispatch('spendONE', {
-        amount: oneCost,
-        action () {
-          dispatch('submitWaffleCustomization', payload)
         }
       }, { root: true })
     },
@@ -218,6 +208,7 @@ export default {
       }, { root: true })
     },
     bakeWaffleLayerFlow ({ dispatch }, waffleId: number) {
+      const currencyToken = Token.query().find(Ticker.CURRENCY)
       const waffle = Waffle.query().with('layers').find(waffleId)
       if (waffle.customizationStep !== CustomizationStep.DONE) {
         dispatch('dialogs/displayError', {
@@ -232,7 +223,7 @@ export default {
       } else {
         dispatch('dialogs/displayConfirmation', {
           title: 'Add New Waffle Layer?',
-          body: 'This will initiate a 24 hour baking period and will cost you 0.0005 YFL',
+          body: `This will initiate a 24 hour baking period and will cost you ${currencyToken.formatAmountPrecision(CREATE_WAFFLE_CURRENCY_COST, 1, true)}`,
           affirmativeAction: () => {
             dispatch('bakeWaffleLayer', waffleId)
           },

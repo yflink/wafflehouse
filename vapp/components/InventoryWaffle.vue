@@ -46,7 +46,6 @@
                 width="100%"
                 height="125"
                 @click="advanceWaffleCustomizationStep(waffle.id)"
-                v-on="on"
               >
                 <v-col>
                   <v-row class="vh-center waffle-text mb-5">
@@ -154,7 +153,7 @@
                   Add Layer
                 </h3>
                 <h6>
-                  Cost: 0.0005 YFL
+                  Cost: {{ currencyToken.formatAmountPrecision(CREATE_WAFFLE_CURRENCY_COST, 1, true) }}
                 </h6>
               </div>
             </v-card>
@@ -189,9 +188,11 @@
 <script lang="ts">
 import { mapGetters } from 'vuex'
 import CountdownTimer from '~/components/helper/CountdownTimer.vue'
-import { CustomizationStep, WaffleStatus } from '~/enums'
+import { CustomizationStep, Ticker, WaffleStatus } from '~/enums'
 import Waffle from '~/database/Waffle'
 import WaffleDisplay from '~/components/WaffleDisplay.vue'
+import Token from '~/database/Token'
+import { CREATE_WAFFLE_CURRENCY_COST } from '~/constants'
 
 export default {
   name: 'InventoryWaffle',
@@ -204,6 +205,8 @@ export default {
   },
   data () {
     return {
+      CREATE_WAFFLE_CURRENCY_COST,
+
       WaffleStatus
     }
   },
@@ -212,6 +215,9 @@ export default {
       now: 'getNow'
     }),
 
+    currencyToken () {
+      return Token.query().find(Ticker.CURRENCY)
+    },
     showAddIngredientButton () {
       return this.waffle.customizationStep > CustomizationStep.NOT_CUSTOMIZED && this.waffle.customizationStep < CustomizationStep.DONE
     }
