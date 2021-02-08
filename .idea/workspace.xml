@@ -22,21 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Applied changes from the Certik audit&#10;&#10;Changed references to &quot;one&quot; into &quot;gas&quot; to make the contract naming chain-agnostic.&#10;&#10;Changed how gas and currency is spent when making waffles. Everything is now sent to the contract, and the contract has a function to send the accumulated funds to the dev and grand prize addresses.">
-      <change afterPath="$PROJECT_DIR$/vapp/static/logos/coingecko.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/static/tutorials/yfl-bridge.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.envSample" beforeDir="false" afterPath="$PROJECT_DIR$/.envSample" afterDir="false" />
+    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Styled the dialog that instructs how to fund ONE&#10;&#10;Implemented admin board">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/WaffleMaker.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/WaffleMaker.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/2.json" beforeDir="false" afterPath="$PROJECT_DIR$/networks/2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/FundDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/FundDialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/database/Waffle/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Waffle/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/pages/admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/admin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/pages/my-waffles.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/my-waffles.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/store/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/store/competition/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/competition/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/store/competition/getters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/competition/getters.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lists/waffle-bases.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-bases.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lists/waffle-extras.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-extras.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lists/waffle-plates.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-plates.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +181,7 @@
       <workItem from="1611572810383" duration="21434000" />
       <workItem from="1611847523734" duration="51552000" />
       <workItem from="1612092623224" duration="13853000" />
-      <workItem from="1612396436620" duration="56013000" />
+      <workItem from="1612396436620" duration="59714000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented waffle display">
       <created>1602652763796</created>
@@ -375,7 +365,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612733754889</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Styled the dialog that instructs how to fund ONE&#10;&#10;Implemented admin board">
+      <created>1612789332656</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1612789332656</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +391,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implemented waffle display" />
     <MESSAGE value="Contracts first push" />
     <MESSAGE value="Waffle display adjustments + contracts structure change" />
     <MESSAGE value="Contract basic waffle and vote system" />
@@ -419,7 +415,8 @@
     <MESSAGE value="Added a few comments to contract" />
     <MESSAGE value="Finalized spending flow, implemented pricing, implemented token data loading, fixed news ticker" />
     <MESSAGE value="Applied changes from the Certik audit&#10;&#10;Changed references to &quot;one&quot; into &quot;gas&quot; to make the contract naming chain-agnostic.&#10;&#10;Changed how gas and currency is spent when making waffles. Everything is now sent to the contract, and the contract has a function to send the accumulated funds to the dev and grand prize addresses." />
-    <option name="LAST_COMMIT_MESSAGE" value="Applied changes from the Certik audit&#10;&#10;Changed references to &quot;one&quot; into &quot;gas&quot; to make the contract naming chain-agnostic.&#10;&#10;Changed how gas and currency is spent when making waffles. Everything is now sent to the contract, and the contract has a function to send the accumulated funds to the dev and grand prize addresses." />
+    <MESSAGE value="Styled the dialog that instructs how to fund ONE&#10;&#10;Implemented admin board" />
+    <option name="LAST_COMMIT_MESSAGE" value="Styled the dialog that instructs how to fund ONE&#10;&#10;Implemented admin board" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
