@@ -26,6 +26,10 @@ const getters: GetterTree<CompetitionState, RootState> = {
 
   getPublishedWafflesCount ({ publishedWafflesCount }) {
     return publishedWafflesCount
+  },
+
+  isCompetitionOver ({ competitionEndTimestamp }, _, { now }) {
+    return competitionEndTimestamp <= now
   }
 }
 

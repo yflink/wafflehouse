@@ -370,8 +370,9 @@ contract WaffleMaker {
     **/
     function concludeCompetition()
         external
-        // competitionHasEnded
+        competitionHasEnded
     {
+        require(!competitionConcluded, "Competition has already been concluded");
         uint gasBalance = address(this).balance;
         uint poolGasAmount = gasBalance.mul(PRIZE_POOL_COST_PERCENTAGE).div(100);
         uint devGasAmount = gasBalance - poolGasAmount;
@@ -386,13 +387,14 @@ contract WaffleMaker {
 
         grandPrize.transfer(poolGasAmount);
         dev.transfer(devGasAmount);
-        currency.transferFrom(address(this), grandPrize, poolCurrencyAmount);
-        currency.transferFrom(address(this), dev, devCurrencyAmount);
+        currency.transfer(grandPrize, poolCurrencyAmount);
+        currency.transfer(dev, devCurrencyAmount);
     }
 
 
     /**
-    *
+    *   Returns either the gas grand prize to be or the final recorded gas prize
+    *   pool if the competition is over
     **/
     function getGasPrizeAmount() external view returns(uint)
     {
@@ -405,7 +407,8 @@ contract WaffleMaker {
     }
 
     /**
-    *
+    *   Returns either the currency grand prize to be or the final recorded currency prize
+    *   pool if the competition is over
     **/
     function getCurrencyPrizeAmount() external view returns(uint)
     {

@@ -28,13 +28,8 @@
           (${{ balanceValue }})
         </v-row>
         <v-row class="vh-center mt-10">
-          <v-btn width="100%" max-width="250" outlined tile>
+          <v-btn width="100%" max-width="250" outlined tile @click="returnTokens">
             Return Tokens
-          </v-btn>
-        </v-row>
-        <v-row class="vh-center mt-4">
-          <v-btn width="100%" max-width="250" outlined tile>
-            Load Tokens
           </v-btn>
         </v-row>
         <v-row class="mt-5">
@@ -122,6 +117,11 @@ export default {
     await Waffle.dispatch('loadAccountWaffles')
     if (this.$nuxt.$loading.finish) {
       this.$nuxt.$loading.finish()
+    }
+  },
+  methods: {
+    returnTokens () {
+      window.open('https://bridge.harmony.one/erc20')
     }
   }
 }

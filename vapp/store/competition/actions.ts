@@ -26,6 +26,14 @@ const actions: ActionTree<CompetitionState, RootState> = {
     commit('SET_PUBLISHED_WAFFLES_COUNT', {
       publishedWafflesCount: bnToNumber(publishedWafflesCount)
     })
+  },
+
+  async concludeCompetition ({ dispatch }) {
+    const transaction = this.$hmyContracts.WaffleMaker.methods.concludeCompetition()
+    await dispatch('dispatchTransaction', {
+      title: 'Concluding Competition',
+      transaction
+    }, { root: true })
   }
 }
 

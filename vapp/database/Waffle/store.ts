@@ -112,6 +112,10 @@ export default {
       return waffleIds
     },
 
+    async getWaffleOwner (_, waffleId: number) {
+      return await this.$hmyContracts.WaffleMaker.methods.getWaffleOwner(waffleId).call()
+    },
+
     async loadLeaderboardWaffles () {
       const waffleIds = []
       const leaderboardIndices = []

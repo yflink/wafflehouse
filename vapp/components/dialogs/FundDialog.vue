@@ -14,44 +14,24 @@
           <v-row class="dialog-title vh-center waffle-text-border mb-5">
             Insufficient ONE funds
           </v-row>
-          <v-row>
-            <v-card>
+          <v-row class="vh-center">
+            <v-card width="80%">
               <v-row class="vh-center waffle-text py-5" style="background-color: #0F0F0F">
+                <v-img class="mr-5" contain max-width="50" :src="require('~/static/tokens/one.png')" />
                 <h2>
                   How to fund ONE into your account
                 </h2>
               </v-row>
-              <v-row>
-                <v-col cols="12" md="6" class="px-10">
-                  <v-row class="vh-center waffle-text">
-                    <h1>
-                      Step 1
-                    </h1>
-                  </v-row>
-                  <v-row class="vh-center my-5">
-                    <v-btn height="50" color="primary" @click="buyCurrency">
-                      Buy YFL on LinkSwap
-                    </v-btn>
-                  </v-row>
-                  <v-row class="vh-center">
-                    <v-img :src="require('~/static/tutorials/linkswap-yfl.png')" />
-                  </v-row>
-                </v-col>
-                <v-col cols="12" md="6" class="px-10">
-                  <v-row class="vh-center waffle-text">
-                    <h1>
-                      Step 2
-                    </h1>
-                  </v-row>
-                  <v-row class="vh-center my-5">
-                    <v-btn height="50" color="primary" @click="bridgeCurrency">
-                      Transfer YFL <br> from Ethereum to Harmony
-                    </v-btn>
-                  </v-row>
-                  <v-row class="vh-center">
-                    <v-img width="25vw" :src="require('~/static/tutorials/linkswap-yfl.png')" />
-                  </v-row>
-                </v-col>
+              <v-row class="vh-center my-5">
+                <h3>
+                  Buy on an exchange and transfer to your address
+                </h3>
+              </v-row>
+              <v-row class="vh-center">
+                <v-btn color="primary" class="px-5 py-10" @click="checkOneOnGecko">
+                  <v-img class="mr-5" width="50" height="50" contain :src="require('~/static/logos/coingecko.png')" />
+                  See exchanges on CoinGecko
+                </v-btn>
               </v-row>
               <v-row class="vh-center pa-5">
                 <v-btn width="50%" outlined tile @click="confirm">
@@ -70,11 +50,12 @@
           <v-row>
             <v-card>
               <v-row class="vh-center waffle-text py-4 mx-0" style="background-color: #0F0F0F">
+                <v-img class="mr-5" contain max-width="50" :src="require('~/static/tokens/yfl.png')" />
                 <h2>
                   How to fund YFL into your account
                 </h2>
               </v-row>
-              <v-row>
+              <v-row class="px-10">
                 <v-col cols="12" md="6" class="px-10">
                   <v-row class="vh-center waffle-text">
                     <h1>
@@ -102,7 +83,7 @@
                     </v-btn>
                   </v-row>
                   <v-row class="vh-center">
-                    <v-img width="100%" :src="require('~/static/tutorials/linkswap-yfl.png')" />
+                    <v-img width="100%" :src="require('~/static/tutorials/yfl-bridge.png')" />
                   </v-row>
                 </v-col>
               </v-row>
@@ -174,6 +155,9 @@ export default {
     },
     bridgeCurrency () {
       window.open('https://bridge.harmony.one/erc20')
+    },
+    checkOneOnGecko () {
+      window.open('https://www.coingecko.com/en/coins/harmony')
     }
   }
 }

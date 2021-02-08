@@ -30,6 +30,7 @@ const actions: ActionTree<RootState, RootState> = {
             })
 
             if (response.status === 'rejected') {
+              console.log(response.transaction.receipt)
               dispatch('dialogs/displayError', {
                 body: 'Error: Transaction Failed'
               })
