@@ -5,18 +5,10 @@
         <v-col cols="12" md="2" class="news-title vh-center pa-3">
           BREAKING NEWS
         </v-col>
-        <v-col v-if="ready" cols="12" md="10" class="news-background vh-center">
-          <vue-marquee direction="left" :duration="duration" :show-progress="false" style="width:100vw; height:25px;">
-            <vue-marquee-slide v-for="(ticker, index) in newsTickers" :key="index" class="news-label text-center" style="min-width: 110vw">
-              <span>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                *
-                {{ ticker }}
-                *
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-              </span>
-            </vue-marquee-slide>
-          </vue-marquee>
+        <v-col v-if="ready" cols="12" md="10" class="news-background news-label vh-center">
+          <marquee-text :duration="duration">
+            {{ newsString }}
+          </marquee-text>
         </v-col>
       </v-row>
     </v-card>
@@ -24,14 +16,13 @@
 </template>
 
 <script>
-import { Marquee, Slide } from 'vue-marquee-component'
+import MarqueeText from 'vue-marquee-text-component'
 import newsTickers from '~/lists/news-tickers'
 
 export default {
   name: 'ToolbarNews',
   components: {
-    [Marquee.name]: Marquee,
-    [Slide.name]: Slide
+    MarqueeText
   },
   data () {
     return {
@@ -40,17 +31,25 @@ export default {
     }
   },
   computed: {
+    newsString () {
+      const space = '\xA0'
+      return this.newsTickers.reduce((tickerConcat, ticker) => {
+        return tickerConcat + `${space.repeat(15)} * ${ticker} *`
+      }, '')
+    },
     duration () {
-      return this.newsTickers.length * 11000
+      return this.newsString.length * 0.08
     }
   },
   mounted () {
-    this.copyTickers()
+    this.selectTickers()
     this.shuffleTickers()
+    this.spliceTickers()
+
     this.ready = true
   },
   methods: {
-    copyTickers () {
+    selectTickers () {
       newsTickers.forEach((ticker) => {
         this.newsTickers.push(ticker)
       })
@@ -62,6 +61,9 @@ export default {
         this.newsTickers[i] = this.newsTickers[j]
         this.newsTickers[j] = temp
       }
+    },
+    spliceTickers () {
+      this.newsTickers.splice(15)
     }
   }
 }
@@ -88,12 +90,6 @@ export default {
     white-space: nowrap;
     font-family: "Press Start 2P",serif;
     color: #0F0F0F;
-  }
-
-  .animated {
-    animation-name: Scrolling;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
   }
 
   @keyframes Scrolling {

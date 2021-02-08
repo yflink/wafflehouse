@@ -221,6 +221,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import WaffleDisplay from '~/components/WaffleDisplay'
 import { Ticker } from '~/enums'
 import Token from '~/database/Token'
 import Waffle from '~/database/Waffle'
@@ -231,7 +232,8 @@ const SHOWN_WAFFLES_COUNT = 3
 export default {
   name: 'Index',
   components: {
-    CountdownTimer
+    CountdownTimer,
+    WaffleDisplay
   },
   data () {
     return {
@@ -265,6 +267,7 @@ export default {
     if (this.$nuxt.$loading.start) {
       this.$nuxt.$loading.start()
     }
+
     Token.dispatch('loadTokensData').then(() => {})
     await Promise.all([
       this.$store.dispatch('competition/loadCompetitionData'),

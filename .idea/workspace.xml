@@ -22,11 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Styled the dialog that instructs how to fund ONE&#10;&#10;Implemented admin board">
+    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Removed animated background and optimized news scroller to reduce resources used by app">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lists/waffle-bases.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-bases.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lists/waffle-extras.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-extras.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lists/waffle-plates.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-plates.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarNews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarNews.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/lists/news-tickers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/news-tickers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +183,7 @@
       <workItem from="1611572810383" duration="21434000" />
       <workItem from="1611847523734" duration="51552000" />
       <workItem from="1612092623224" duration="13853000" />
-      <workItem from="1612396436620" duration="59714000" />
+      <workItem from="1612396436620" duration="64155000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented waffle display">
       <created>1602652763796</created>
@@ -372,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612789332656</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Fixed shortened ingredients list that was done to make test deployment faster">
+      <created>1612793627429</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1612793627429</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,8 +400,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Contracts first push" />
-    <MESSAGE value="Waffle display adjustments + contracts structure change" />
     <MESSAGE value="Contract basic waffle and vote system" />
     <MESSAGE value="Implemented design of every page, contract waffle creation, customization and voting system" />
     <MESSAGE value="Slight mobile adaptations, drizzle plug-in, first contract calls" />
@@ -416,7 +423,9 @@
     <MESSAGE value="Finalized spending flow, implemented pricing, implemented token data loading, fixed news ticker" />
     <MESSAGE value="Applied changes from the Certik audit&#10;&#10;Changed references to &quot;one&quot; into &quot;gas&quot; to make the contract naming chain-agnostic.&#10;&#10;Changed how gas and currency is spent when making waffles. Everything is now sent to the contract, and the contract has a function to send the accumulated funds to the dev and grand prize addresses." />
     <MESSAGE value="Styled the dialog that instructs how to fund ONE&#10;&#10;Implemented admin board" />
-    <option name="LAST_COMMIT_MESSAGE" value="Styled the dialog that instructs how to fund ONE&#10;&#10;Implemented admin board" />
+    <MESSAGE value="Fixed shortened ingredients list that was done to make test deployment faster" />
+    <MESSAGE value="Removed animated background and optimized news scroller to reduce resources used by app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed animated background and optimized news scroller to reduce resources used by app" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

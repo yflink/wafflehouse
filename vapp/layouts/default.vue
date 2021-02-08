@@ -71,7 +71,6 @@ export default {
 <style scoped>
   .app-container {
     background: url(../static/background.png) repeat;
-    animation: ScrollBackground 10s linear infinite;
     border-radius: 5px;
     overflow: hidden;
     font-family: Roboto, serif;
