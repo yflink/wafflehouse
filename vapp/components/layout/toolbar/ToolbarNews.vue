@@ -1,11 +1,11 @@
 <template>
   <v-card width="100%" class="ma-0 pa-0 vh-center" color="#B40000">
-    <v-card width="100%" max-width="1250px" class="ma-0 pa-0 news-container">
+    <v-card :width="$vuetify.breakpoint.mdAndUp ? '80vw' : '90vw'" class="ma-0 pa-0 news-container">
       <v-row>
         <v-col cols="12" md="2" class="news-title vh-center pa-3">
           BREAKING NEWS
         </v-col>
-        <v-col v-if="ready" cols="12" md="10" class="news-background news-label vh-center">
+        <v-col v-if="ready" cols="12" md="10" class="mx-0 px-0 news-background news-label vh-center">
           <marquee-text :duration="duration">
             {{ newsString }}
           </marquee-text>
@@ -34,7 +34,7 @@ export default {
     newsString () {
       const space = '\xA0'
       return this.newsTickers.reduce((tickerConcat, ticker) => {
-        return tickerConcat + `${space.repeat(15)} * ${ticker} *`
+        return tickerConcat + `${space.repeat(8)} * ${ticker} *`
       }, '')
     },
     duration () {
@@ -42,14 +42,14 @@ export default {
     }
   },
   mounted () {
-    this.selectTickers()
+    this.copyTickers()
     this.shuffleTickers()
     this.spliceTickers()
 
     this.ready = true
   },
   methods: {
-    selectTickers () {
+    copyTickers () {
       newsTickers.forEach((ticker) => {
         this.newsTickers.push(ticker)
       })

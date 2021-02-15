@@ -30,7 +30,6 @@ const actions: ActionTree<RootState, RootState> = {
             })
 
             if (response.status === 'rejected') {
-              console.log(response.transaction.receipt)
               dispatch('dialogs/displayError', {
                 body: 'Error: Transaction Failed'
               })
@@ -65,7 +64,7 @@ const actions: ActionTree<RootState, RootState> = {
   },
 
   async spendOne ({ dispatch }, { amount, action }) {
-    await Token.dispatch('loadTokensData')
+    await Token.dispatch('loadTokensBalances')
 
     const oneToken = Token.query().find(Ticker.ONE)
     if (oneToken.compareBalance(amount) === -1) {
@@ -76,7 +75,7 @@ const actions: ActionTree<RootState, RootState> = {
   },
 
   async spendCurrency ({ dispatch }, { amount, action }) {
-    await Token.dispatch('loadTokensData')
+    await Token.dispatch('loadTokensBalances')
 
     const currencyTokenData = tokenList[Ticker.CURRENCY]
     const currencyToken = Token.query().find(Ticker.CURRENCY)

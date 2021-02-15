@@ -22,13 +22,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Removed animated background and optimized news scroller to reduce resources used by app">
+    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Added new news ticker&#10;Changed toolbar layout&#10;Added icons to toolbar buttons">
+      <change afterPath="$PROJECT_DIR$/vapp/static/layout/house-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vapp/static/layout/my-waffles-icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/WaffleMaker.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/WaffleMaker.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/2.json" beforeDir="false" afterPath="$PROJECT_DIR$/networks/2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/Toolbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarNews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/ToolbarNews.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/constants/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/database/Token/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Token/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/lists/news-tickers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/news-tickers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/rules.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/rules.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/store/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/store/competition/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/competition/actions.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +192,8 @@
       <workItem from="1611572810383" duration="21434000" />
       <workItem from="1611847523734" duration="51552000" />
       <workItem from="1612092623224" duration="13853000" />
-      <workItem from="1612396436620" duration="64155000" />
+      <workItem from="1612396436620" duration="75773000" />
+      <workItem from="1613320393604" duration="13122000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented waffle display">
       <created>1602652763796</created>
@@ -381,7 +391,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612793627429</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Removed animated background and optimized news scroller to reduce resources used by app">
+      <created>1612800788164</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1612800788164</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,7 +417,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Contract basic waffle and vote system" />
     <MESSAGE value="Implemented design of every page, contract waffle creation, customization and voting system" />
     <MESSAGE value="Slight mobile adaptations, drizzle plug-in, first contract calls" />
     <MESSAGE value="First GitHub commit (last stable private push)" />
@@ -425,7 +441,8 @@
     <MESSAGE value="Styled the dialog that instructs how to fund ONE&#10;&#10;Implemented admin board" />
     <MESSAGE value="Fixed shortened ingredients list that was done to make test deployment faster" />
     <MESSAGE value="Removed animated background and optimized news scroller to reduce resources used by app" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed animated background and optimized news scroller to reduce resources used by app" />
+    <MESSAGE value="Added new news ticker&#10;Changed toolbar layout&#10;Added icons to toolbar buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new news ticker&#10;Changed toolbar layout&#10;Added icons to toolbar buttons" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

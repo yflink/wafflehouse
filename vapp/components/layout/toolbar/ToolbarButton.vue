@@ -14,7 +14,14 @@
         <span class="toolbar-button-span waffle-text-border" :class="{'mobile': $vuetify.breakpoint.smAndDown}">
           {{ label }}
         </span>
-        <v-img v-if="showWaffle" :src="require('~/static/waffles/waffle.png')" width="200" class="toolbar-button-waffle" />
+        <v-img
+          v-if="image"
+          :src="image"
+          contain
+          width="70%"
+          max-height="100%"
+          class="toolbar-button-waffle"
+        />
       </v-container>
     </v-img>
   </v-card>
@@ -32,9 +39,9 @@ export default {
       type: String,
       default: null
     },
-    showWaffle: {
-      type: Boolean,
-      default: false
+    image: {
+      type: String,
+      default: null
     }
   },
   computed: {
@@ -51,7 +58,7 @@ export default {
   }
 
   .toolbar-button-span {
-    font-size: 50px;
+    font-size: 40px;
     z-index: 10;
   }
 

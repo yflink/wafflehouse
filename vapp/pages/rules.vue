@@ -74,14 +74,14 @@
         </ol>
       </div>
       <v-row>
-        <v-col cols="6">
-          <h2 class="vh-center waffle-text">
+        <v-col cols="12" md="6" class="text-center">
+          <h2 class="waffle-text">
             Waffle Warrior NFT
           </h2>
           <video :src="require('~/static/nft/memez_nft.mp4')" loop autoplay />
         </v-col>
-        <v-col cols="6">
-          <h2 class="vh-center waffle-text">
+        <v-col cols="12" md="6" class="text-center">
+          <h2 class="waffle-text">
             BONK NFT
           </h2>
           <video :src="require('~/static/nft/bonk_nft.mp4')" loop autoplay />

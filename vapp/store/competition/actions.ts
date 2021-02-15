@@ -7,7 +7,7 @@ import { bnToNumber } from '~/utils/abi'
 const actions: ActionTree<CompetitionState, RootState> = {
   async loadCompetitionData ({ commit }) {
     const results = await Promise.all([
-      this.$hmyContracts.WaffleMaker.methods.getGasPrizeAmount().call(),
+      this.$hmyContracts.WaffleMaker.methods.getWeiPrizeAmount().call(),
       this.$hmyContracts.WaffleMaker.methods.getCurrencyPrizeAmount().call(),
       this.$hmyContracts.WaffleMaker.methods.competitionEndTimestamp().call(),
       this.$hmyContracts.WaffleMaker.methods.getPublishedWafflesCount().call()

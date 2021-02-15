@@ -268,7 +268,7 @@ export default {
       this.$nuxt.$loading.start()
     }
 
-    Token.dispatch('loadTokensData').then(() => {})
+    Token.dispatch('loadTokensPrices').then(() => {})
     await Promise.all([
       this.$store.dispatch('competition/loadCompetitionData'),
       this.loadRecentWaffles()
