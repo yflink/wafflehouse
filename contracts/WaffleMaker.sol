@@ -9,12 +9,12 @@ contract WaffleMaker {
     using SafeMath for uint;
 
     uint constant PRIZE_POOL_COST_PERCENTAGE = 90; // The rest is given to the owner address as a dev fee
-    uint constant MAX_NAME_BYTES = 20;
-    uint constant MAX_DESCRIPTION_BYTES = 75;
+    uint constant MAX_NAME_BYTES = 32;
+    uint constant MAX_DESCRIPTION_BYTES = 128;
     uint constant MAX_WAFFLE_LAYERS = 5;
     uint constant MAX_VOTES_PER_ACCOUNT = 3;
     uint constant LEADERBOARD_WAFFLE_COUNT = 10;
-    uint constant COMPETITION_DURATION = 60 * 60 * 24 * 30;
+    uint constant COMPETITION_DURATION = 60 * 60 * 24;//60 * 60 * 24 * 30;
     uint constant BAKE_DURATION = 10;//60 * 60 * 24;
     uint constant CUSTOMIZE_DURATION = 120;//60 * 60 * 24;
     uint constant CUSTOMIZATION_STEPS_COUNT = 6;
@@ -44,7 +44,7 @@ contract WaffleMaker {
     uint[] publishedWaffleIds;
     mapping (uint => uint) public leaderboardWaffleIds;
     mapping(address => AccountProfile) profiles;
-    uint finalGasPrizeAmount;
+    uint finalWeiPrizeAmount;
     uint finalCurrencyPrizeAmount;
     bool competitionConcluded = false;
 
@@ -73,7 +73,7 @@ contract WaffleMaker {
 
     struct WaffleItem {
         string name;
-        uint gasCost;
+        uint weiCost;
     }
 
     struct WaffleLayer {
@@ -164,29 +164,29 @@ contract WaffleMaker {
     /**
     *   Add a new topping that can be used by waffles
     **/
-    function createTopping (string memory _name, uint _gasCost) external isOwner {
-        toppings.push(WaffleItem(_name, _gasCost));
+    function createTopping (string memory _name, uint _weiCost) external isOwner {
+        toppings.push(WaffleItem(_name, _weiCost));
     }
 
     /**
     *   Add a new base that can be used by waffles
     **/
-    function createBase (string memory _name, uint _gasCost) external isOwner {
-        bases.push(WaffleItem(_name, _gasCost));
+    function createBase (string memory _name, uint _weiCost) external isOwner {
+        bases.push(WaffleItem(_name, _weiCost));
     }
 
     /**
     *   Add a new extra that can be used by waffles
     **/
-    function createExtra (string memory _name, uint _gasCost) external isOwner {
-        extras.push(WaffleItem(_name, _gasCost));
+    function createExtra (string memory _name, uint _weiCost) external isOwner {
+        extras.push(WaffleItem(_name, _weiCost));
     }
 
     /**
     *   Add a new plate that can be used by waffles
     **/
-    function createPlate (string memory _name, uint _gasCost) external isOwner {
-        plates.push(WaffleItem(_name, _gasCost));
+    function createPlate (string memory _name, uint _weiCost) external isOwner {
+        plates.push(WaffleItem(_name, _weiCost));
     }
 
     /**
@@ -258,9 +258,9 @@ contract WaffleMaker {
 
         checkCustomizationCosts(_waffleId, _baseId, _toppingId, _extraId, _plateId);
         if (waffles[_waffleId].layersCount <= 1) {
-            require(stringIsNotEmpty(_name), "Waffle name can't be empty");
-            require(stringSizeLowerOrEqual(_name, MAX_NAME_BYTES), "Max name length exceeded");
-            require(stringSizeLowerOrEqual(_description, MAX_DESCRIPTION_BYTES), "Max description length exceeded");
+            require(bytes(_name).length > 0, "Waffle name can't be empty");
+            require(bytes(_name).length <= MAX_NAME_BYTES, "Max name length exceeded");
+            require(bytes(_description).length <= MAX_DESCRIPTION_BYTES, "Max description length exceeded");
             require(_extraId < extras.length, "Invalid extra");
             require(_plateId < plates.length, "Invalid plate");
 
@@ -373,36 +373,36 @@ contract WaffleMaker {
         competitionHasEnded
     {
         require(!competitionConcluded, "Competition has already been concluded");
-        uint gasBalance = address(this).balance;
-        uint poolGasAmount = gasBalance.mul(PRIZE_POOL_COST_PERCENTAGE).div(100);
-        uint devGasAmount = gasBalance - poolGasAmount;
+        uint weiBalance = address(this).balance;
+        uint poolWeiAmount = weiBalance.mul(PRIZE_POOL_COST_PERCENTAGE).div(100);
+        uint devWeiAmount = weiBalance - poolWeiAmount;
 
         uint currencyBalance = currency.balanceOf(address(this));
         uint poolCurrencyAmount = currencyBalance.mul(PRIZE_POOL_COST_PERCENTAGE).div(100);
         uint devCurrencyAmount = currencyBalance - poolCurrencyAmount;
 
         competitionConcluded = true;
-        finalGasPrizeAmount = poolGasAmount;
+        finalWeiPrizeAmount = poolWeiAmount;
         finalCurrencyPrizeAmount = poolCurrencyAmount;
 
-        grandPrize.transfer(poolGasAmount);
-        dev.transfer(devGasAmount);
-        currency.transfer(grandPrize, poolCurrencyAmount);
-        currency.transfer(dev, devCurrencyAmount);
+        grandPrize.transfer(poolWeiAmount);
+        dev.transfer(devWeiAmount);
+        require(currency.transfer(grandPrize, poolCurrencyAmount), "Something went wrong with the prize pool currency transfer");
+        require(currency.transfer(dev, devCurrencyAmount), "Something went wrong with the dev currency transfer");
     }
 
 
     /**
-    *   Returns either the gas grand prize to be or the final recorded gas prize
+    *   Returns either the wei grand prize to be or the final recorded wei prize
     *   pool if the competition is over
     **/
-    function getGasPrizeAmount() external view returns(uint)
+    function getWeiPrizeAmount() external view returns(uint)
     {
         if (competitionConcluded) {
-            return finalGasPrizeAmount;
+            return finalWeiPrizeAmount;
         } else {
-            uint gasBalance = address(this).balance;
-            return gasBalance.mul(PRIZE_POOL_COST_PERCENTAGE).div(100);
+            uint weiBalance = address(this).balance;
+            return weiBalance.mul(PRIZE_POOL_COST_PERCENTAGE).div(100);
         }
     }
 
@@ -588,16 +588,6 @@ contract WaffleMaker {
         return waffleLayers;
     }
 
-    function stringIsNotEmpty(string memory _str) internal pure returns(bool) {
-        bytes memory strBytes = bytes(_str);
-        return strBytes.length > 0;
-    }
-
-    function stringSizeLowerOrEqual(string memory _str, uint _size) internal pure returns(bool) {
-        bytes memory strBytes = bytes(_str);
-        return strBytes.length <= _size;
-    }
-
     function spendCurrency(uint amount) internal {
         uint balance = currency.balanceOf(address(msg.sender));
         require(balance >= amount, "Currency balance too low for this action");
@@ -618,14 +608,14 @@ contract WaffleMaker {
         )
         internal
     {
-        uint gasCost = 0;
+        uint weiCost = 0;
         if (waffles[_waffleId].layersCount <= 1) {
-            gasCost = gasCost.add(plates[_plateId].gasCost + extras[_extraId].gasCost);
+            weiCost = weiCost.add(plates[_plateId].weiCost + extras[_extraId].weiCost);
         }
-        gasCost = gasCost.add(bases[_baseId].gasCost + toppings[_toppingId].gasCost);
+        weiCost = weiCost.add(bases[_baseId].weiCost + toppings[_toppingId].weiCost);
 
-        require(msg.sender.balance >= gasCost, "Gas balance too low for this customization");
-        require(msg.value == gasCost, "Sent value doesn't match expected value for this waffle customization");
+        require(msg.sender.balance >= weiCost, "Wei balance too low for this customization");
+        require(msg.value == weiCost, "Sent value doesn't match expected value for this waffle customization");
     }
 
     function addWaffleLayer(uint _waffleId) internal {
