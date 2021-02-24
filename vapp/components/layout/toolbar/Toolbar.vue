@@ -12,7 +12,7 @@
                 <toolbar-button :image="require('~/static/layout/my-waffles-icon.png')" show-waffle to="/my-waffles" label="My Waffles" />
               </v-col>
               <v-col cols="6" md="3" class="pa-0 ma-0">
-                <toolbar-button to="/vote" label="Vote" />
+                <toolbar-button :image="require('~/static/layout/vote.png')" to="/vote" label="Vote" />
               </v-col>
               <v-col cols="6" md="3" class="pa-0 ma-0">
                 <toolbar-button to="/rules" label="Rules" />

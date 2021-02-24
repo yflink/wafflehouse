@@ -7,15 +7,7 @@ export interface Wallet {
   image: any;
   type: WalletType;
   supportedEnvironments: object;
-  isWalletAvailable: () => boolean;
-  signIn: () => Promise<void>;
-  getAccount: () => Promise<WalletAccount>;
-  signTransaction: (txn: any) => any;
-  attachToContract: (txn: any) => any;
-}
-
-export interface WalletAccount {
-  address: string
+  connector: object;
 }
 
 export interface ContractData {

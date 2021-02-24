@@ -1,6 +1,5 @@
 import Token from '~/database/Token/index'
 import tokenList from '~/lists/tokens'
-import hmyWallet from '~/wallets/hmy'
 
 export default {
   actions: {
@@ -16,15 +15,15 @@ export default {
       })
     },
 
-    async loadTokensData () {
-      const waffleMakerAddress = this.$hmy.crypto.toBech32(this.$hmyContracts.WaffleMaker.address)
-      const account = await hmyWallet.getAccount()
+    async loadTokensData ({ rootGetters }) {
+      const waffleMakerAddress = this.$contracts.WaffleMaker._address
+      const address = await rootGetters['accounts/getAddress']
       await Promise.all(Object.keys(tokenList).map(async (ticker) => {
         const tokenData = tokenList[ticker]
         const results = await Promise.all([
           tokenData.getPrice(this),
-          tokenData.getBalance(this, account.address),
-          tokenData.getAllowance(this, account.address, waffleMakerAddress)
+          tokenData.getBalance(this, address),
+          tokenData.getAllowance(this, address, waffleMakerAddress)
         ])
 
         await Token.update({
@@ -54,14 +53,14 @@ export default {
       )
     },
 
-    async loadTokensBalances () {
-      const waffleMakerAddress = this.$hmy.crypto.toBech32(this.$hmyContracts.WaffleMaker.address)
-      const account = await hmyWallet.getAccount()
+    async loadTokensBalances ({ rootGetters }) {
+      const waffleMakerAddress = this.$contracts.WaffleMaker._address
+      const address = await rootGetters['accounts/getAddress']
       await Promise.all(Object.keys(tokenList).map(async (ticker) => {
         const tokenData = tokenList[ticker]
         const results = await Promise.all([
-          tokenData.getBalance(this, account.address),
-          tokenData.getAllowance(this, account.address, waffleMakerAddress)
+          tokenData.getBalance(this, address),
+          tokenData.getAllowance(this, address, waffleMakerAddress)
         ])
 
         await Token.update({

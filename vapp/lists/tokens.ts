@@ -19,8 +19,15 @@ const tokenList: TokenList = {
     name: 'ONE',
     decimals: 18,
     async getBalance (context, address) {
-      const response = await context.$hmy.blockchain.getBalance({ address })
-      return bnToString(response.result)
+      let result = null
+      console.log(address)
+      if (context.$library.getBalance) {
+        result = await context.$library.getBalance(address)
+      } else {
+        const response = await context.$library.getBalance({ address })
+        result = response.result
+      }
+      return bnToString(result)
     },
     getAllowance () {
       return '0'
@@ -35,11 +42,11 @@ const tokenList: TokenList = {
     name: process.env.CURRENCY_NAME,
     decimals: 18,
     async getBalance (context, address) {
-      const response = await context.$hmyContracts.Currency.methods.balanceOf(address).call()
+      const response = await context.$contracts.Currency.methods.balanceOf(address).call()
       return bnToString(response)
     },
     async getAllowance (context, address, spender) {
-      const response = await context.$hmyContracts.Currency.methods.allowance(address, spender).call()
+      const response = await context.$contracts.Currency.methods.allowance(address, spender).call()
       return bnToString(response)
     },
     async getPrice (context) {
@@ -48,7 +55,7 @@ const tokenList: TokenList = {
       return response.data[coinGeckoId].usd.toString()
     },
     getApproveTransaction (context, spender, amount) {
-      return context.$hmyContracts.Currency.methods.increaseAllowance(spender, amount)
+      return context.$contracts.Currency.methods.increaseAllowance(spender, amount)
     }
   }
 }

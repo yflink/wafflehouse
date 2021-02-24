@@ -51,7 +51,6 @@ const processWaffleInfo = async (waffleId: number, waffleInfo: any) => {
       name: waffleInfo.name,
       favorite: favorites.includes(waffleId),
       hidden: hidden.includes(waffleId),
-      description: waffleInfo.description,
       votes: bnToNumber(waffleInfo.votes),
       extraId: bnToNumber(waffleInfo.extraId),
       plateId: bnToNumber(waffleInfo.plateId),
@@ -92,7 +91,7 @@ export default {
 
     async loadWaffles (_, waffleIds: number[]) {
       await Promise.all(waffleIds.map(async (waffleId) => {
-        const waffleInfo = await this.$hmyContracts.WaffleMaker.methods.getWaffleInfo(waffleId).call()
+        const waffleInfo = await this.$contracts.WaffleMaker.methods.getWaffleInfo(waffleId).call()
         await processWaffleInfo(waffleId, waffleInfo)
       }))
     },
@@ -101,7 +100,7 @@ export default {
       const waffleIds = []
       await Promise.all(publishedWaffleIndices.map(async (publishedWaffleIndex) => {
         try {
-          const waffleInfo = await this.$hmyContracts.WaffleMaker.methods.getPublishedWaffleInfo(publishedWaffleIndex).call()
+          const waffleInfo = await this.$contracts.WaffleMaker.methods.getPublishedWaffleInfo(publishedWaffleIndex).call()
           const waffleId = bnToNumber(waffleInfo.id)
           await processWaffleInfo(waffleId, waffleInfo)
           waffleIds.push(waffleId)
@@ -113,7 +112,7 @@ export default {
     },
 
     async getWaffleOwner (_, waffleId: number) {
-      return await this.$hmyContracts.WaffleMaker.methods.getWaffleOwner(waffleId).call()
+      return await this.$contracts.WaffleMaker.methods.getWaffleOwner(waffleId).call()
     },
 
     async loadLeaderboardWaffles () {
@@ -125,7 +124,7 @@ export default {
 
       await Promise.all(leaderboardIndices.map(async (leaderboardIndex) => {
         try {
-          const waffleInfo = await this.$hmyContracts.WaffleMaker.methods.getLeaderboardWaffleInfo(leaderboardIndex).call()
+          const waffleInfo = await this.$contracts.WaffleMaker.methods.getLeaderboardWaffleInfo(leaderboardIndex).call()
           const waffleId = bnToNumber(waffleInfo.id)
           await processWaffleInfo(waffleId, waffleInfo)
           waffleIds.push(waffleId)
@@ -144,7 +143,7 @@ export default {
 
     createWaffle ({ dispatch }) {
       const router = this.$router
-      const transaction = this.$hmyContracts.WaffleMaker.methods.createWaffle()
+      const transaction = this.$contracts.WaffleMaker.methods.createWaffle()
       dispatch('dispatchTransaction', {
         title: 'Creating Waffle',
         transaction,
@@ -171,7 +170,7 @@ export default {
       }
     },
 
-    submitWaffleCustomization ({ dispatch }: any, { waffleId, name, description, baseId, toppingId, extraId, plateId }) {
+    submitWaffleCustomization ({ dispatch }: any, { waffleId, name, baseId, toppingId, extraId, plateId }) {
       const base = baseList[baseId]
       const topping = toppingList[toppingId]
       const extra = extraList[extraId]
@@ -179,7 +178,7 @@ export default {
       const oneCost = new BigNumber(base.oneCost).plus(topping.oneCost).plus(extra.oneCost).plus(plate.oneCost).toString(10)
 
       const router = this.$router
-      const transaction = this.$hmyContracts.WaffleMaker.methods.submitWaffleCustomization(waffleId, name, description, baseId, toppingId, extraId, plateId)
+      const transaction = this.$contracts.WaffleMaker.methods.submitWaffleCustomization(waffleId, name, baseId, toppingId, extraId, plateId)
       dispatch('dispatchTransaction', {
         title: 'Customizing Waffle',
         transaction,
@@ -191,7 +190,7 @@ export default {
     },
 
     advanceWaffleCustomizationStep ({ dispatch }: any, waffleId: number) {
-      const transaction = this.$hmyContracts.WaffleMaker.methods.advanceWaffleCustomizationStep(waffleId)
+      const transaction = this.$contracts.WaffleMaker.methods.advanceWaffleCustomizationStep(waffleId)
       dispatch('dispatchTransaction', {
         title: 'Adding Ingredient',
         transaction,
@@ -202,7 +201,7 @@ export default {
     },
 
     bakeWaffleLayer ({ dispatch }: any, waffleId: number) {
-      const transaction = this.$hmyContracts.WaffleMaker.methods.bakeWaffleLayer(waffleId)
+      const transaction = this.$contracts.WaffleMaker.methods.bakeWaffleLayer(waffleId)
       dispatch('dispatchTransaction', {
         title: 'Adding Waffle Layer',
         transaction,
@@ -237,7 +236,7 @@ export default {
     },
 
     publishWaffle ({ dispatch }, waffleId: number) {
-      const transaction = this.$hmyContracts.WaffleMaker.methods.publishWaffle(waffleId)
+      const transaction = this.$contracts.WaffleMaker.methods.publishWaffle(waffleId)
       dispatch('dispatchTransaction', {
         title: 'Publishing Waffle',
         transaction,
@@ -266,7 +265,7 @@ export default {
     },
 
     voteWaffle ({ dispatch }, waffleId: number) {
-      const transaction = this.$hmyContracts.WaffleMaker.methods.voteWaffle(waffleId)
+      const transaction = this.$contracts.WaffleMaker.methods.voteWaffle(waffleId)
       dispatch('dispatchTransaction', {
         title: 'Voting',
         transaction,

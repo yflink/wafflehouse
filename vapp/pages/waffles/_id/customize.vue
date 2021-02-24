@@ -22,17 +22,12 @@
         </v-col>
         <v-col cols="12" md="6">
           <v-row v-if="showFullCustomization">
-            <v-text-field v-model="name" label="Name" :counter="MAX_NAME_LENGTH" outlined dense />
-          </v-row>
-          <v-row v-if="showFullCustomization">
-            <v-textarea
-              v-model="description"
-              label="Description"
-              height="75"
-              :counter="MAX_DESCRIPTION_LENGTH"
-              no-resize
+            <v-text-field
+              v-model="name"
+              label="Name"
               outlined
               dense
+              :rules="nameRules"
             />
           </v-row>
           <v-row>
@@ -77,13 +72,13 @@ import toppingList from '~/lists/waffle-toppings'
 import plateList from '~/lists/waffle-plates'
 import extraList from '~/lists/waffle-extras'
 import SelectField from '~/components/inputs/SelectField.vue'
-import { MAX_NAME_LENGTH, MAX_DESCRIPTION_LENGTH } from '~/constants'
+import { MAX_NAME_BYTES } from '~/constants'
 import Token from '~/database/Token'
 import { Ticker } from '~/enums'
 
 export default {
   name: 'Customize',
-  middleware: 'forceHmyWalletConnected',
+  middleware: 'forceWalletConnected',
   components: { SelectField, WaffleDisplay, Tip },
   data () {
     return {
@@ -92,14 +87,29 @@ export default {
 
       viewedWaffle: null,
       name: '',
-      description: '',
       baseId: 0,
       toppingId: 0,
       extraId: 0,
       plateId: 0,
 
-      MAX_NAME_LENGTH,
-      MAX_DESCRIPTION_LENGTH
+      nameRules: [
+        (input) => {
+          const nameSize = new Blob([input]).size
+          if (nameSize <= 0) {
+            return 'Name can\'t be empty'
+          } else {
+            return true
+          }
+        },
+        (input) => {
+          const nameSize = new Blob([input]).size
+          if (nameSize > MAX_NAME_BYTES) {
+            return 'Name exceeds maximum size'
+          } else {
+            return true
+          }
+        }
+      ]
     }
   },
   computed: {
@@ -154,14 +164,11 @@ export default {
     },
 
     nameLengthValid () {
-      return this.name.length <= MAX_NAME_LENGTH && this.name.length > 0
-    },
-    descriptionLengthValid () {
-      return this.description.length < MAX_DESCRIPTION_LENGTH
+      return this.name.length <= MAX_NAME_BYTES && this.name.length > 0
     },
     canSubmit () {
       if (this.showFullCustomization) {
-        return this.nameLengthValid && this.descriptionLengthValid
+        return this.nameLengthValid
       } else {
         return this.baseId > 0 || this.toppingId > 0
       }
@@ -186,7 +193,6 @@ export default {
       Waffle.dispatch('submitWaffleCustomization', {
         waffleId: this.viewedWaffleId,
         name: this.name,
-        description: this.description,
         baseId: this.baseId,
         toppingId: this.toppingId,
         extraId: this.extraId,

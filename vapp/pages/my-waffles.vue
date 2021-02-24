@@ -82,7 +82,7 @@ export default {
     InventoryWaffle,
     Tip
   },
-  middleware: 'forceHmyWalletConnected',
+  middleware: 'forceWalletConnected',
   data () {
     return {
       WaffleStatus
@@ -114,7 +114,10 @@ export default {
     if (this.$nuxt.$loading.start) {
       this.$nuxt.$loading.start()
     }
-    await Waffle.dispatch('loadAccountWaffles')
+    await Promise.all([
+      Waffle.dispatch('loadAccountWaffles'),
+      Token.dispatch('loadTokensData')
+    ])
     if (this.$nuxt.$loading.finish) {
       this.$nuxt.$loading.finish()
     }

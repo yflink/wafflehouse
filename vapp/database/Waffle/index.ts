@@ -19,7 +19,6 @@ export default class Waffle extends Model {
   id: number;
   owner: string;
   name: string;
-  description: string;
   votes: number;
   favorite: boolean;
   extraId: number;
@@ -34,7 +33,6 @@ export default class Waffle extends Model {
       id: this.number(-1),
       owner: this.string(''),
       name: this.string(''),
-      description: this.string(''),
       votes: this.number(0),
       favorite: this.boolean(false),
       hidden: this.boolean(false),

@@ -199,7 +199,7 @@ export default {
   components: { CountdownTimer, WaffleDisplay },
   props: {
     waffle: {
-      type: Waffle as Object,
+      type: Object,
       required: true
     }
   },

@@ -7,10 +7,10 @@ import { bnToNumber } from '~/utils/abi'
 const actions: ActionTree<CompetitionState, RootState> = {
   async loadCompetitionData ({ commit }) {
     const results = await Promise.all([
-      this.$hmyContracts.WaffleMaker.methods.getWeiPrizeAmount().call(),
-      this.$hmyContracts.WaffleMaker.methods.getCurrencyPrizeAmount().call(),
-      this.$hmyContracts.WaffleMaker.methods.competitionEndTimestamp().call(),
-      this.$hmyContracts.WaffleMaker.methods.getPublishedWafflesCount().call()
+      this.$contracts.WaffleMaker.methods.getWeiPrizeAmount().call(),
+      this.$contracts.WaffleMaker.methods.getCurrencyPrizeAmount().call(),
+      this.$contracts.WaffleMaker.methods.competitionEndTimestamp().call(),
+      this.$contracts.WaffleMaker.methods.getPublishedWafflesCount().call()
     ])
 
     commit('SET_COMPETITION_DATA', {
@@ -22,14 +22,14 @@ const actions: ActionTree<CompetitionState, RootState> = {
   },
 
   async loadPublishedWafflesCount ({ commit }) {
-    const publishedWafflesCount = await this.$hmyContracts.WaffleMaker.methods.getPublishedWafflesCount().call()
+    const publishedWafflesCount = await this.$contracts.WaffleMaker.methods.getPublishedWafflesCount().call()
     commit('SET_PUBLISHED_WAFFLES_COUNT', {
       publishedWafflesCount: bnToNumber(publishedWafflesCount)
     })
   },
 
   async concludeCompetition ({ dispatch }) {
-    const transaction = this.$hmyContracts.WaffleMaker.methods.concludeCompetition()
+    const transaction = this.$contracts.WaffleMaker.methods.concludeCompetition()
     await dispatch('dispatchTransaction', {
       title: 'Concluding Competition',
       transaction

@@ -72,7 +72,7 @@ export default {
       CREATE_WAFFLE_CURRENCY_COST
     }
   },
-  middleware: 'forceHmyWalletConnected',
+  middleware: 'forceWalletConnected',
   computed: {
     currencyToken () {
       return Token.query().find(Ticker.CURRENCY)

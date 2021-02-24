@@ -73,7 +73,7 @@ const SHOWN_WAFFLES_COUNT = 12
 
 export default {
   name: 'Vote',
-  middleware: 'forceHmyWalletConnected',
+  middleware: 'forceWalletConnected',
   components: { WaffleDisplay },
   data () {
     return {

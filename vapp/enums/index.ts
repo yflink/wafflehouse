@@ -1,6 +1,7 @@
 export enum WalletType {
-  ONE,
-  MATH
+  METAMASK = 'metamask',
+  ONE= 'one',
+  MATH = 'math'
 }
 
 export enum Environment {
