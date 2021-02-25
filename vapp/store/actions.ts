@@ -30,6 +30,15 @@ const actions: ActionTree<RootState, RootState> = {
     const provider = await this.$web3ConnectorsManager.connect(connectorId)
     const connector = this.$web3ConnectorsManager.selectedConnector
 
+    await dispatch('setProvider', {
+      provider,
+      connector
+    })
+
+    await dispatch('accounts/loadAccountInfo')
+  },
+
+  setProvider (_, { provider, connector }) {
     const contractData = [
       WaffleMakerJson,
       currencyContractData
@@ -40,7 +49,9 @@ const actions: ActionTree<RootState, RootState> = {
       contractData.forEach((data) => {
         if (data.networks[process.env.HARMONY_CHAIN_ID]) {
           const contract = provider.contracts.createContract(data.abi, data.networks[process.env.HARMONY_CHAIN_ID].address)
-          connector.attachToContract(contract)
+          if (connector) {
+            connector.attachToContract(contract)
+          }
           this.$contracts[data.contractName] = contract
         }
       })
@@ -54,8 +65,6 @@ const actions: ActionTree<RootState, RootState> = {
         }
       })
     }
-
-    await dispatch('accounts/loadAccountInfo')
   },
 
   async dispatchTransaction ({ dispatch, getters }, { title, transaction, successCallback, oneCost, currencyCost }) {
@@ -76,7 +85,7 @@ const actions: ActionTree<RootState, RootState> = {
 
             if (response.status === 'rejected') {
               dispatch('dialogs/displayError', {
-                body: 'Error: Transaction Failed'
+                body: 'Error: Transaction failed or was cancelled'
               })
             } else {
               dispatch('dialogs/closeDialogs')
@@ -86,7 +95,7 @@ const actions: ActionTree<RootState, RootState> = {
             }
           } catch (e) {
             dispatch('dialogs/displayError', {
-              body: `Error: ${e}`
+              body: 'Error: Transaction failed or was cancelled'
             })
           }
         }
@@ -124,7 +133,7 @@ const actions: ActionTree<RootState, RootState> = {
 
     const currencyTokenData = tokenList[Ticker.CURRENCY]
     const currencyToken = Token.query().find(Ticker.CURRENCY)
-    const waffleMakerAddress = this.$contracts.WaffleMaker._address
+    const waffleMakerAddress = this.$contracts.WaffleMaker._address || this.$contracts.WaffleMaker.address
     if (currencyToken.compareBalance(amount) === -1) {
       dispatch('dialogs/displayFundCurrency', {})
     } else if (currencyToken.compareApproved(amount) === -1) {

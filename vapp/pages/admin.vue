@@ -37,7 +37,7 @@
         </v-col>
       </v-row>
       <v-row class="waffle-text mt-10 vh-center">
-        <v-card width="50%" height="100" class="vh-center text-center action-button" :disabled="competitionIsOver" @click="concludeCompetition">
+        <v-card width="50%" height="100" class="vh-center text-center action-button" @click="concludeCompetition">
           <h2>
             Conclude Competition
           </h2>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import Waffle from '~/database/Waffle'
 
 export default {
@@ -62,10 +62,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('competition', {
-      competitionIsOver: 'isCompetitionOver'
-    }),
-
     displayedWaffles () {
       return Waffle.getters('getWafflesbyIds')(this.displayedWaffleIds)
     }

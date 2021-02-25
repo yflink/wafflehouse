@@ -35,7 +35,7 @@ declare module 'vuex/types/index' {
   }
 }
 
-const plugin: Plugin = (_, inject: Inject) => {
+const plugin: Plugin = ({ store }, inject: Inject) => {
   const web3ConnectorsManager = new Web3ConnectorsManager({
     cacheConnector: true,
     connectorOptions: {
@@ -61,11 +61,16 @@ const plugin: Plugin = (_, inject: Inject) => {
   })
   inject('web3ConnectorsManager', web3ConnectorsManager)
 
-  inject('library', new Harmony(process.env.HARMONY_URL, {
+  const provider = new Harmony(process.env.HARMONY_URL, {
     chainType: ChainType.Harmony,
     chainId: process.env.HARMONY_CHAIN_ID
-  }))
+  })
+  inject('library', provider)
   inject('contracts', {})
+
+  store.dispatch('setProvider', {
+    provider
+  })
 }
 
 export default plugin

@@ -19,15 +19,10 @@ const tokenList: TokenList = {
     name: 'ONE',
     decimals: 18,
     async getBalance (context, address) {
-      let result = null
-      console.log(address)
-      if (context.$library.getBalance) {
-        result = await context.$library.getBalance(address)
-      } else {
-        const response = await context.$library.getBalance({ address })
-        result = response.result
-      }
-      return bnToString(result)
+      const isHmyLibrary = (context.$library?.messenger?.chainType === 'hmy')
+      const args = isHmyLibrary ? { address } : address
+      const response = await context.$library.getBalance(args)
+      return bnToString(isHmyLibrary ? response.result : response.toString())
     },
     getAllowance () {
       return '0'

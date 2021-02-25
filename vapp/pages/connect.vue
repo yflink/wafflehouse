@@ -8,7 +8,7 @@
               Connect Wallet To Continue
             </h2>
           </v-row>
-          <v-row class="mx-5">
+          <v-row class="mx-5 text-center">
             <v-col v-for="(wallet, index) in wallets" :key="index" cols="12" md="4">
               <v-card class="extension-card pa-4" @click="connectWallet(wallet)">
                 <v-img height="150" contain :src="wallet.image" />
@@ -16,9 +16,12 @@
                   {{ wallet.name }}
                 </span>
               </v-card>
-              <h6 class="text-justify my-3 px-5">
+              <h6 class="my-3 px-5">
                 {{ wallet.note }}
               </h6>
+              <v-btn v-if="wallet.name === 'Metamask'" color="primary" @click="viewMetamaskSetup">
+                How?
+              </v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -30,7 +33,6 @@
 <script>
 export default {
   name: 'Connect',
-  hideNav: false,
   data () {
     return {
       wallets: [
@@ -38,7 +40,8 @@ export default {
           name: 'Metamask',
           image: require('~/static/logos/metamask.png'),
           installLink: 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn',
-          connectorId: 'injected'
+          connectorId: 'injected',
+          note: 'You must be setup for Harmony Chain before using'
         },
         {
           name: 'Harmony One Wallet',
@@ -77,6 +80,9 @@ export default {
 
     openWalletLink (wallet) {
       window.open(wallet.installLink)
+    },
+    viewMetamaskSetup () {
+      window.open('https://docs.harmony.one/home/network/wallets/browser-extensions-wallets/metamask-wallet')
     }
   }
 }

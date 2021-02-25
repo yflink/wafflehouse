@@ -15,27 +15,11 @@ export default {
       })
     },
 
-    async loadTokensData ({ rootGetters }) {
-      const waffleMakerAddress = this.$contracts.WaffleMaker._address
-      const address = await rootGetters['accounts/getAddress']
-      await Promise.all(Object.keys(tokenList).map(async (ticker) => {
-        const tokenData = tokenList[ticker]
-        const results = await Promise.all([
-          tokenData.getPrice(this),
-          tokenData.getBalance(this, address),
-          tokenData.getAllowance(this, address, waffleMakerAddress)
-        ])
-
-        await Token.update({
-          where: ticker,
-          data: {
-            price: results[0],
-            balance: results[1],
-            approved: results[2]
-          }
-        })
-      })
-      )
+    async loadTokensData ({ dispatch }) {
+      await Promise.all([
+        dispatch('loadTokensPrices'),
+        dispatch('loadTokensBalances')
+      ])
     },
 
     async loadTokensPrices () {
@@ -54,7 +38,7 @@ export default {
     },
 
     async loadTokensBalances ({ rootGetters }) {
-      const waffleMakerAddress = this.$contracts.WaffleMaker._address
+      const waffleMakerAddress = this.$contracts.WaffleMaker._address || this.$contracts.WaffleMaker.address
       const address = await rootGetters['accounts/getAddress']
       await Promise.all(Object.keys(tokenList).map(async (ticker) => {
         const tokenData = tokenList[ticker]

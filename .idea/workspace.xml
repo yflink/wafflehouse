@@ -22,58 +22,25 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Changed &quot;gas&quot; to &quot;wei&quot;, changed string length constants">
-      <change afterPath="$PROJECT_DIR$/vapp/classes/web3-connectors-manager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/middleware/forceWalletConnected.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/plugins/inject-web3.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vapp/static/logos/metamask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WaffleHouse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WaffleHouse.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/wafflehouses.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wafflehouses.iml" afterDir="false" />
+    <list default="true" id="3cd41b40-5513-4840-87c0-a2355f305846" name="Default Changelist" comment="Changed wallet system to support Metamask">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/WaffleMaker.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/WaffleMaker.sol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lists/waffle-bases.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-bases.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lists/waffle-extras.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-extras.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lists/waffle-plates.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-plates.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lists/waffle-toppings.json" beforeDir="false" afterPath="$PROJECT_DIR$/lists/waffle-toppings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/networks/2.json" beforeDir="false" afterPath="$PROJECT_DIR$/networks/2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/components/InventoryWaffle.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/InventoryWaffle.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/components/layout/toolbar/Toolbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/layout/toolbar/Toolbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/components/dialogs/WaffleViewerDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/components/dialogs/WaffleViewerDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/constants/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/database/Token/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Token/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/database/Waffle/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Waffle/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/database/Waffle/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/database/Waffle/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/enums/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/enums/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/interfaces/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/interfaces/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/layouts/default.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/lists/tokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/lists/tokens.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/middleware/forceHmyWalletConnected.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/nuxt.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/pages/admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/admin.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/pages/connect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/connect.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/pages/my-waffles.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/my-waffles.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/pages/vote.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/vote.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/pages/waffles/_id/customize.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/waffles/_id/customize.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/pages/waffles/create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/pages/waffles/create.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/plugins/injectContracts.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/plugins/injectTokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/plugins/inject-tokens.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/plugins/injectWeb3.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/plugins/setupRefreshes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/plugins/setup-refreshes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/static/tutorials/yfl-bridge.png" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/static/tutorials/yfl-bridge.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/static/waffles/toppings/Waffle House _ The Great Competition!_files/app.js(2).download" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/store/accounts/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/accounts/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/store/accounts/getters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/accounts/getters.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/store/accounts/mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/accounts/mutations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/store/accounts/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/accounts/state.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/plugins/inject-web3.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/plugins/inject-web3.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vapp/store/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/store/competition/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/competition/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/wallets/hmy/MathWallet.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/wallets/hmy/OneWallet.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vapp/wallets/hmy/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vapp/store/competition/mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vapp/store/competition/mutations.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +203,8 @@
       <workItem from="1614064807688" duration="33000" />
       <workItem from="1614064858219" duration="2581000" />
       <workItem from="1614074027842" duration="5113000" />
-      <workItem from="1614191822512" duration="1993000" />
+      <workItem from="1614191822512" duration="2670000" />
+      <workItem from="1614247275815" duration="9758000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented waffle display">
       <created>1602652763796</created>
@@ -455,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613447368593</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Changed wallet system to support Metamask">
+      <created>1614193866845</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1614193866846</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +449,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Slight mobile adaptations, drizzle plug-in, first contract calls" />
     <MESSAGE value="First GitHub commit (last stable private push)" />
     <MESSAGE value="Favorite system and generic transaction tracking system" />
     <MESSAGE value="Fixed drizzle flow, replace connect wallet page with a dialog, implemented basic waffle loading system, replace some modifiers with requires" />
@@ -499,7 +473,8 @@
     <MESSAGE value="Removed animated background and optimized news scroller to reduce resources used by app" />
     <MESSAGE value="Added new news ticker&#10;Changed toolbar layout&#10;Added icons to toolbar buttons" />
     <MESSAGE value="Changed &quot;gas&quot; to &quot;wei&quot;, changed string length constants" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed &quot;gas&quot; to &quot;wei&quot;, changed string length constants" />
+    <MESSAGE value="Changed wallet system to support Metamask" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed wallet system to support Metamask" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

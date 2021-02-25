@@ -25,7 +25,9 @@
           <v-card width="100%" class="waffle-container">
             <v-col>
               <v-row class="waffle-text-border-black waffle-title vh-center">
-                {{ waffle.name }}
+                <div :style="fontSizeByCharacter(waffle.name.length)">
+                  {{ waffle.name }}
+                </div>
                 <v-btn icon @click="setWaffleFavorite(waffle.id, !waffle.favorite)">
                   <v-icon>
                     {{ waffle.favorite ? 'mdi-star' : 'mdi-star-outline' }}
@@ -66,6 +68,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { MAX_NAME_BYTES } from '../constants'
 import Waffle from '~/database/Waffle'
 import WaffleDisplay from '~/components/WaffleDisplay'
 
@@ -97,6 +100,15 @@ export default {
 
     displayedWaffles () {
       return Waffle.getters('getWafflesbyIds')(this.displayedWaffleIds)
+    },
+
+    fontSizeByCharacter () {
+      return (stringLength) => {
+        return {
+          'max-width': '90%',
+          'font-size': `${((MAX_NAME_BYTES / stringLength) * 1.5 + 16)}px`
+        }
+      }
     }
   },
   async mounted () {

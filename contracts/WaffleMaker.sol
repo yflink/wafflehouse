@@ -10,22 +10,21 @@ contract WaffleMaker {
 
     uint constant PRIZE_POOL_COST_PERCENTAGE = 90; // The rest is given to the owner address as a dev fee
     uint constant MAX_NAME_BYTES = 32;
-    uint constant MAX_DESCRIPTION_BYTES = 128;
     uint constant MAX_WAFFLE_LAYERS = 5;
     uint constant MAX_VOTES_PER_ACCOUNT = 3;
     uint constant LEADERBOARD_WAFFLE_COUNT = 10;
-    uint constant COMPETITION_DURATION = 60 * 60 * 24;//60 * 60 * 24 * 30;
-    uint constant BAKE_DURATION = 10;//60 * 60 * 24;
-    uint constant CUSTOMIZE_DURATION = 120;//60 * 60 * 24;
+    uint constant COMPETITION_DURATION = 60 * 60 * 24 * 30;
+    uint constant BAKE_DURATION = 60 * 60 * 24;
+    uint constant CUSTOMIZE_DURATION = 60 * 60 * 24;
     uint constant CUSTOMIZATION_STEPS_COUNT = 6;
-    uint constant CUSTOMIZATION_STEP_WINDOW_DURATION = 30;//60 * 60;
+    uint constant CUSTOMIZATION_STEP_WINDOW_DURATION = 60 * 60;
     uint constant CREATE_WAFFLE_CURRENCY_COST = 5 * 10 ** 15;
     uint[CUSTOMIZATION_STEPS_COUNT] CUSTOMIZATION_STEP_WINDOWS = [
-        0,//0,
-        30,//60 * 60,
-        60,//60 * 60 * 9,
-        90,//60 * 60 * 17,
-        120,//60 * 60 * 24,
+        0,
+        60 * 60,
+        60 * 60 * 9,
+        60 * 60 * 17,
+        60 * 60 * 24,
         0
     ];
 
@@ -85,7 +84,6 @@ contract WaffleMaker {
         address owner;
         uint votes;
         string name;
-        string description;
         uint plateId;
         uint extraId;
         mapping(uint => WaffleLayer) layers;
@@ -199,7 +197,6 @@ contract WaffleMaker {
             owner: msg.sender,
             votes: 0,
             name: "",
-            description: "",
             plateId: 0,
             extraId: 0,
             layersCount: 0,
@@ -239,7 +236,6 @@ contract WaffleMaker {
         (
             uint _waffleId,
             string memory _name,
-            string memory _description,
             uint _baseId,
             uint _toppingId,
             uint _extraId,
@@ -260,12 +256,10 @@ contract WaffleMaker {
         if (waffles[_waffleId].layersCount <= 1) {
             require(bytes(_name).length > 0, "Waffle name can't be empty");
             require(bytes(_name).length <= MAX_NAME_BYTES, "Max name length exceeded");
-            require(bytes(_description).length <= MAX_DESCRIPTION_BYTES, "Max description length exceeded");
             require(_extraId < extras.length, "Invalid extra");
             require(_plateId < plates.length, "Invalid plate");
 
             waffles[_waffleId].name = _name;
-            waffles[_waffleId].description = _description;
             waffles[_waffleId].plateId = _plateId;
             waffles[_waffleId].extraId = _extraId;
         }
@@ -442,7 +436,6 @@ contract WaffleMaker {
         returns (
             uint id,
             string memory name,
-            string memory description,
             uint votes,
             uint extraId,
             uint plateId,
@@ -460,7 +453,6 @@ contract WaffleMaker {
         return (
             _waffleId,
             waffle.name,
-            waffle.description,
             waffle.votes,
             waffle.extraId,
             waffle.plateId,
@@ -480,7 +472,6 @@ contract WaffleMaker {
         returns (
             uint id,
             string memory name,
-            string memory description,
             uint votes,
             uint extraId,
             uint plateId,
@@ -504,7 +495,6 @@ contract WaffleMaker {
         returns (
             uint id,
             string memory name,
-            string memory description,
             uint votes,
             uint extraId,
             uint plateId,

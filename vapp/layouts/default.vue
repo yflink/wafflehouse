@@ -45,6 +45,9 @@ export default {
   },
   mounted () {
     this.passValid = true
+    if (this.$web3ConnectorsManager.isConnectorCached) {
+      this.$store.dispatch('connect')
+    }
   }
 }
 </script>

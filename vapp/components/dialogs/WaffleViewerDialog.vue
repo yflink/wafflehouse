@@ -32,9 +32,6 @@
                 </v-icon>
               </v-btn>
             </v-row>
-            <v-row class="mb-3">
-              {{ viewedWaffle.description }}
-            </v-row>
             <v-row class="mb-5">
               ${{ viewedWaffle.price }}
             </v-row>
